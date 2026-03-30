@@ -1,0 +1,85 @@
+
+.promo-container_Commit{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:2rem;
+width:97%;
+margin:auto;
+margin-top:5em;
+}
+
+.promo-section_Commit{
+position:relative;
+overflow:hidden;
+border-radius:10px;
+}
+
+.promo-image_Commit{
+width:100%;
+height:320px;
+object-fit:cover;
+display:block;
+transition:transform .6s ease;
+}
+
+.promo-section_Commit:hover .promo-image_Commit{
+transform:scale(1.08);
+}
+
+/* NEW STYLE CARD */
+.promo-overlay_Commit{
+position:absolute;
+bottom:20px;
+left:20px;
+background:white;
+padding:1.4em 1.8em;
+border-radius:6px;
+box-shadow:0 8px 25px rgba(0,0,0,0.15);
+color:#000;
+max-width:220px;
+transition:transform .4s ease;
+}
+
+.promo-section_Commit:hover .promo-overlay_Commit{
+transform:translateY(-6px);
+}
+
+.promo-overlay_Commit h3{
+font-size:1rem;
+margin-bottom:.4rem;
+font-family:'Times New Roman', Times, serif;
+letter-spacing:1px;
+}
+
+.promo-overlay_Commit p{
+font-size:.95rem;
+margin-bottom:.8rem;
+color:#555;
+}
+
+.promo-overlay_Commit button{
+background:#000;
+color:#fff;
+border:none;
+padding:.7em 1.4em;
+font-size:.85rem;
+cursor:pointer;
+border-radius:3px;
+transition:.3s;
+}
+
+.promo-overlay_Commit button:hover{
+background:#333;
+}
+
+@media (max-width:768px){
+
+.promo-container_Commit{
+grid-template-columns:1fr;
+}
+
+.promo-image_Commit{
+height:260px;
+}
+
+}

@@ -1,0 +1,28 @@
+.topnav {
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 17px 2vw;
+font-size: 0.95rem;
+background-color: #fff;
+flex-wrap: wrap;
+}
+
+.topnav-center li a {
+font-size: 1.1rem;
+color: #231f20;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+@media (max-width: 992px) {
+
+.topnav {
+flex-direction: column;
+align-items: center;
+text-align: center;
+gap: 5px;
+padding: 12px 3vw;
+}
+
+}
+
