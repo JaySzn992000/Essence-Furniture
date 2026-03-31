@@ -22,7 +22,7 @@ return (
 <div>
 
 <div className="featured_center">
-<h2>SHOP</h2>
+<h2>SHOP NOW</h2>
 <section className="shopcategory_flex">
 <div className="shopcategory_card">
 <img src={o3plussunscreen} alt="Sunscreen" />

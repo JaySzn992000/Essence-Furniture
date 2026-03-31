@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
 import Slider from "../slider";
-import { Helmet } from "react-helmet";
 import emailjs from "emailjs-com";
 import "./ProductListmodule.css";
 import "./Home.css";
@@ -14,16 +13,7 @@ import AboutHm from "./AboutHm";
 import Commitments from "./Commitments";
 import ShopCategory from "./ShopCategory";
 import Featured from "./Featured";
-import FavFavroute from "./FavFavroute";
-// import BottomFavcomp from "../componentsBoot/bottomFavcomp";
-// import SlidCakeImg from "../Slider/CakeSlide.jpg";
-// import VideoSliderComponent from "../videoslider";
-// import TestimonialSlider from "./Testimonial";
-// import CategoryMangoes from "../Products/CategoryMangoes";
-// import DeliveryBanner from "../OtherImages/DeliveryBanner.jpg";
-// import CategoryChilli from "../Products/CategoryChilli";
-// import CategoryMixed from "../Products/CategoryMixed";
-// import Message from "./Message";
+
 
 
 const Home = () => {
@@ -99,10 +89,8 @@ return (
 
 <button onClick={seeAllProducts} className="seeLLProducts">View All</button>
 
-<Iconicselection></Iconicselection>
 <Commitments></Commitments>
 <AboutHm></AboutHm>
-
 <ShopCategory></ShopCategory>
 <Featured></Featured>
 

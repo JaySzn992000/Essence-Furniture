@@ -268,79 +268,21 @@ alt=""
 
 <li className="hover_products">
 <a onClick={naviToStoreBrand}  href="">PRODUCTS</a>
-</li>
-
-</div>
-
-{/* 2ND HOVER */}
-
-<div className="div_ul">
-
-<li className="hover_products">
-<a onClick={naviToBathBody}  href="">ABOUT US</a>
-
-<div className="listing_Products">
-
-<ul>
-<li onClick={naviProductFashWash}>
-<a href="">T-Shirts</a>
-</li>
-<li onClick={naviGateTshirt}>
-<a href="">Shirts</a>
-</li>
-<li onClick={naviGateShirt}>
-<a href="">Jeans</a>
-</li>
-<li onClick={naviGateJeans}>
-<a href="">Trousers</a>
-</li>
-<li onClick={naviGatePants}>
-<a href="">Shorts</a>
-</li>
-<li onClick={naviGateSweaters}>
-<a href="">Accessories</a>
-</li>
-</ul>
-
-<ul>
-<li onClick={naviProductPage}>
-<img src={compact}></img>
-</li>
-</ul>
-
-<ul>
-<li onClick={naviProductPage}>
-<img src={eyeliner}></img>
-</li>
-</ul>
-
-</div>
-
-</li>
-
-</div>
-
-{/* 3RD HOVER */}
-
-<div className="div_ul">
-
-<li className="hover_products">
-<a onClick={naviToSkinCare}  href="">CONTACT US</a>
 <div className="listing_Products">
 <ul>
 
 <li onClick={naviToTops}>
-<a href="">Tops</a>
+<a href="">Sofas</a>
 </li>
 
 <li onClick={naviToWomenJeans}>
-<a href="">Women Jeans</a>
+<a href="">Beds</a>
 </li>
 <li onClick={naviToWomenTshirts}>
-<a href="">Women T-shirts</a>
+<a href="">Bookshelves</a>
 </li>
 <li onClick={naviToWomenAccessories}>
-<a href="">Women Accessories</a>
+<a href="">Cabinets</a>
 </li>
 </ul>
 
@@ -358,6 +300,26 @@ alt=""
 
 </div>
 
+</li>
+
+</div>
+
+{/* 2ND HOVER */}
+
+<div className="div_ul">
+
+<li className="hover_products">
+<a onClick={naviToBathBody}  href="">ABOUT US</a>
+</li>
+
+</div>
+
+{/* 3RD HOVER */}
+
+<div className="div_ul">
+
+<li className="hover_products">
+<a onClick={naviToSkinCare}  href="">CONTACT US</a>
 </li>
 </div>
 

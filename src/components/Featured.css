@@ -12,8 +12,8 @@ padding: 3rem 1rem;
 .featured_center h2 {
 text-align: center;
 margin-bottom: 2rem;
-font-size: 2rem;
-font-family: 'Times New Roman', Times, serif;
+font-size: 1.7rem;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
 letter-spacing: 1px;
 }
 
@@ -39,7 +39,7 @@ position: relative;
 
 .shopcategory_flex img {
 width: 100%;
-height: 271px;
+height: 285px;
 border-radius: 7px;
 object-fit: cover;
 cursor: pointer;
@@ -68,7 +68,7 @@ opacity: 1;
 
 .overlay i {
 font-size: 2rem;
-color: white;
+color: #fff;
 }
 
 .modal {
@@ -94,10 +94,11 @@ border-radius: 8px;
 position: absolute;
 top: 20px;
 right: 35px;
-color: white;
+color: #fff;
 font-size: 2rem;
 cursor: pointer;
 }
+
 
 @media (max-width: 768px) {
 

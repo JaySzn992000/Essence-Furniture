@@ -5,7 +5,9 @@ grid-template-columns:repeat(2,1fr);
 gap:2rem;
 width:97%;
 margin:auto;
-margin-top:5em;
+margin-top:4.7em;
+margin-bottom: 4.7em;
+cursor: pointer;
 }
 
 .promo-section_Commit{
@@ -26,12 +28,11 @@ transition:transform .6s ease;
 transform:scale(1.08);
 }
 
-/* NEW STYLE CARD */
 .promo-overlay_Commit{
 position:absolute;
 bottom:20px;
 left:20px;
-background:white;
+background: #fff;;
 padding:1.4em 1.8em;
 border-radius:6px;
 box-shadow:0 8px 25px rgba(0,0,0,0.15);
@@ -61,7 +62,7 @@ color:#555;
 background:#000;
 color:#fff;
 border:none;
-padding:.7em 1.4em;
+padding:.8em 1.4em;
 font-size:.85rem;
 cursor:pointer;
 border-radius:3px;
@@ -71,6 +72,7 @@ transition:.3s;
 .promo-overlay_Commit button:hover{
 background:#333;
 }
+
 
 @media (max-width:768px){
 
