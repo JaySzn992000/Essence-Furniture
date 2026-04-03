@@ -16,8 +16,9 @@ padding-bottom: 47px;
 }
 
 .footer_logo {
-width: 150px;
+width: 147px;
 margin-bottom: 15px;
+margin-left: -.27em;
 cursor: pointer;
 }
 
@@ -72,8 +73,14 @@ color: #777;
 margin-bottom: 15px;
 }
 
+.newsletter_text {
+line-height: 2em;
+width: 85%;
+}
+
 .newsletter_box {
 display: flex;
+width: 85%;
 border: 1px solid #ccc;
 border-radius: 30px;
 overflow: hidden;
@@ -89,8 +96,8 @@ outline: none;
 
 .newsletter_box button {
 width: 50px;
-background: black;
-color: white;
+background: #000;
+color: #fff;
 border: none;
 cursor: pointer;
 }
@@ -110,7 +117,6 @@ margin-left: 10px;
 }
 
 
-
 @media (max-width: 500px) {
 
 .footer {
@@ -124,7 +130,7 @@ padding: 20px;
 }
 
 .footer_logo {
-width: 120px;
+width: 141px;
 }
 
 .socials span {
@@ -142,12 +148,15 @@ font-size: 12px;
 .payments {
 margin-top: 10px;
 }
+
 }
+
 
 @media (min-width: 501px) and (max-width: 768px) {
 
 .footer {
-padding: 15px;
+padding: 21px;
+padding-left: 31px;
 }
 
 .footer_container {
@@ -157,7 +166,7 @@ padding: 5px;
 }
 
 .footer_logo {
-width: 130px;
+width: 143px;
 }
 
 .socials span {
@@ -180,10 +189,17 @@ justify-content: center;
 text-align: center;
 font-size: 12px;
 }
+
 }
 
 
 @media (min-width: 769px) and (max-width: 1024px) {
+
+.footer {
+padding: 7px;
+padding-left: 7px;
+}
+
 .footer_container {
 grid-template-columns: 1fr 1fr;
 gap: 40px;
@@ -191,11 +207,22 @@ padding: 30px 40px;
 }
 
 .footer_logo {
-width: 140px;
+width: 143px;
 }
 
 .footer_bottom {
 flex-wrap: wrap;
 font-size: 13px;
 }
+
+}
+
+
+
+@media (min-width: 1025px) and (max-width: 1516px) { 
+
+.footer {
+padding: 11px;
+}
+
 }
