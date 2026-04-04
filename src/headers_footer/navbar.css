@@ -176,7 +176,6 @@ height: auto;
 z-index: 999;
 margin-top: .7em;
 margin-bottom: .7em;
-margin-left: 0em;
 cursor: pointer;
 }
 
@@ -311,7 +310,7 @@ left: 0;
 width: 100%;
 height: auto;
 padding: 21px 30px 67px;
-padding-left: 253px;
+padding-left: 53px;
 text-align: start;
 z-index: 999;
 opacity: 0;
@@ -583,7 +582,7 @@ display: none;
 }
 
 .flex_nav_ProfileSection .nav_profileSection {
-gap: 0.6em;
+gap: 0.2em;
 }
 
 .fa-shopping-cart {

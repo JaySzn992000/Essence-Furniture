@@ -33,7 +33,7 @@ max-width:480px;
 }
 
 .banner_content h1{
-font-size:2.7rem;
+font-size:2.3rem;
 font-weight: 600;
 font-family: Verdana, Geneva, Tahoma, sans-serif;
 margin-bottom:.6em;
@@ -67,7 +67,7 @@ color:#fff;
 @media(max-width:768px){
 
 .about_banner{
-height:60vh;
+height: auto;
 }
 
 .banner_content{
@@ -76,11 +76,16 @@ max-width:80%;
 }
 
 .banner_content h1{
-font-size:1.9rem;
+font-size:1.9rem !important;
 }
 
 .banner_content p{
 font-size:.9rem;
 }
+
+.banner_content button{
+padding:1em 1.7em;
+}
+
 
 }

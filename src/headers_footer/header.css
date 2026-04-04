@@ -25,7 +25,7 @@ cursor: pointer;
 .footer_left p {
 font-size: .95rem;
 color: #555;
-margin: 17px 0;
+margin: 19px 0;
 }
 
 .footer_left .link {
@@ -44,7 +44,7 @@ margin-top: 15px;
 .socials span {
 width: 45px;
 height: 45px;
-border: 1px solid #ccc;
+border: 1px solid #231f20;
 border-radius: 50%;
 display: flex;
 align-items: center;
@@ -53,7 +53,7 @@ cursor: pointer;
 }
 
 .footer_col h4 {
-font-size: 16px;
+font-size: 17px;
 text-align: start;
 margin-bottom: 21px;
 color: #000;
@@ -61,8 +61,8 @@ color: #000;
 
 .footer_col p {
 font-size: 14px;
-color: #666;
-margin: 17px 0;
+color: #231f20;
+margin: 23px 0;
 cursor: pointer;
 text-align: start;
 }
@@ -80,7 +80,7 @@ width: 85%;
 
 .newsletter_box {
 display: flex;
-width: 85%;
+width: 80%;
 border: 1px solid #ccc;
 border-radius: 30px;
 overflow: hidden;
@@ -90,7 +90,7 @@ margin-bottom: 10px;
 .newsletter_box input {
 flex: 1;
 border: none;
-padding: 12px 15px;
+padding: 17px 15px;
 outline: none;
 }
 

@@ -146,7 +146,7 @@ navi("/streax");
 };
 
 const naviToBathBody = () => {
-navi('/men')
+navi('/aboutus')
 }
 
 const naviToShoes = () => {
@@ -154,7 +154,7 @@ navi('/shoes')
 }
 
 const naviToSkinCare = () => {
-navi('/women')
+navi('/contactus')
 }
 
 const naviToMakeup = () => {
@@ -267,8 +267,11 @@ alt=""
 <div className="div_ul">
 
 <li className="hover_products">
+
 <a onClick={naviToStoreBrand}  href="">PRODUCTS</a>
+
 <div className="listing_Products">
+
 <ul>
 
 <li onClick={naviToTops}>
