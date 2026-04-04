@@ -1759,14 +1759,14 @@ console.log(`Server is running PORT on ${PORT}`);
 
 
 setInterval(() => {
-  axios
-    .get("https://namasya.onrender.com/ping")
-    .then(() => {
-      console.log("Pinged self to stay awake");
-    })
-    .catch((err) => {
-      console.error("Ping failed", err.message);
-    });
+axios
+.get("https://antara-gug4.onrender.com/ping")
+.then(() => {
+console.log("Pinged self to stay awake");
+})
+.catch((err) => {
+console.error("Ping failed", err.message);
+});
 }, 10 * 60 * 1000); 
 
 
