@@ -21,8 +21,8 @@ import NavSliderDash from "./NavSliderDash";
 import TlPrdctOrdrearn from "./DashboardADmin/TlPrdctOrdrearn";
 import Navbar from "./headers_footer/navbar";
 import Home from "./components/Home";
-import Tops from "./Products/tops";
-import WomenJeans from "./Products/women-jeans";
+import Sofas from "./Products/sofas";
+import Beds from "./Products/beds";
 import ContactForm from "./components/contactform";
 import Aroma from "./Products/aroma";
 import Aboutus from "./components/aboutus";
@@ -58,14 +58,14 @@ import Streax from "./Products/streax";
 import Collections from "./components/collections";
 import Women from "./components/women";
 import Men from "./components/men";
-import Shoes from "./components/shoes";
+import Tables from "./components/tables";
 import Makeup from "./components/makeup";
 import Perfume from "./components/perfume";
 import Tshirts from "./Products/t-shirts";
 import Shirts from "./Products/shirts";
 import Jeans from "./Products/jeans";
-import WomenAccessories from "./Products/women-accessories";
-import WomenTshirts from "./Products/women-t-shirts";
+import Cabinets from "./Products/cabinets";
+import Bookshelves from "./Products/book-shelves";
 import Accessories from "./Products/accessories";
 
 
@@ -83,7 +83,7 @@ return (
 <Routes>
 <Route path="/Login" element={<Login />} />
 <Route path="/collections" element={<Collections />} />
-<Route path="/shoes" element={<Shoes />} />
+<Route path="/tables" element={<Tables />} />
 <Route path="/women" element={<Women />} />
 <Route path="/men" element={<Men />} />
 <Route path="/perfume" element={<Perfume />} />
@@ -107,8 +107,8 @@ return (
 <Route path="/NavSliderDash" element={<NavSliderDash />} />
 <Route path="/TlPrdctOrdrearn" element={<TlPrdctOrdrearn />} />
 <Route path="/Navbar" element={<Navbar />} />
-<Route path="/tops" element={<Tops />} />
-<Route path="/women-jeans" element={<WomenJeans />} />
+<Route path="/sofas" element={<Sofas />} />
+<Route path="/beds" element={<Beds />} />
 <Route path="/Fragrance" element={<Fragrance />}/>
 <Route path="/shorts" element={<Shorts />} />
 <Route path="/aroma" element={<Aroma />} />
@@ -122,8 +122,8 @@ return (
 <Route path="/shirts" element={<Shirts />} />
 <Route path="/t-shirts" element={<Tshirts />} />
 <Route path="/jeans" element={<Jeans />} />
-<Route path="/women-accessories" element={<WomenAccessories />} />
-<Route path="/women-t-shirts" element={<WomenTshirts />} />
+<Route path="/cabinets" element={<Cabinets />} />
+<Route path="/book-shelves" element={<Bookshelves />} />
 <Route path="/accessories" element={<Accessories />} />
 <Route path="/Pickles" element={<Pickles />} />
 <Route path="/AdminForget" element={<AdminForget />} />

@@ -11,7 +11,7 @@ import { addToCart } from "../action/action";
 import FAqQuestions from "../components/FAqQuestions";
 
 
-const WomenAccessories = ({ showFilters = true, limit, addToCart }) => {
+const Sofas = ({ showFilters = true, limit, addToCart }) => {
 
 const [allProducts, setAllProducts] = useState([]); 
 const [filteredProducts, setFilteredProducts] = useState([]);
@@ -21,7 +21,7 @@ const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
 axios
-.get("http://localhost:3001/fetchProductslistTshirt")
+.get("https://omega-zg6z.onrender.com/fetchProductslistLotus")
 .then((response) => {
 console.log("Fetched Mangoes Pickles products:", response.data); 
 setAllProducts(response.data); 
@@ -37,7 +37,7 @@ console.error("Error fetching Mangoes Pickles products:", error);
 useEffect(() => {
 if (query) {
 axios
-.get("http://localhost:3001/fetchProductslist", {
+.get("https://omega-zg6z.onrender.com/fetchProductslist", {
 params: { search: query },
 })
 .then((response) => {
@@ -54,6 +54,7 @@ console.error("Error fetching products with search query:", error);
 setFilteredProducts(allProducts); 
 }
 }, [query, allProducts]);
+
 
 const handleFilterUpdate = (filteredData) => {
 setFilteredProducts(filteredData);
@@ -84,7 +85,9 @@ setWishlistStatus({
 [product.id]: !wishlistStatus[product.id],
 });
 
+
 setWishlistCount(wishlist.length);
+
 
 const updatedWishlistStatus = {
 ...wishlistStatus,
@@ -104,12 +107,10 @@ return text
 .replace(/(^-|-$)/g, '');      
 };
 
-
 useEffect(() => {
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
 setCartCount(cart.length);
 }, []);
-
 
 const handleAddToCart = (product) => {
 
@@ -186,7 +187,8 @@ loading="lazy"
 
 <img
 id="Review_Img"
-src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png" />
+src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"
+/>
 
 <li style={{ marginTop: ".5em", marginLeft: "-.2em" }}></li>
 <li className="fa_Review">{productlist.review}</li>
@@ -223,4 +225,4 @@ onClick={() => handleAddToCart(productlist)}
 
 };
 
-export default connect(null, { addToCart })(WomenAccessories);
+export default connect(null, { addToCart })(Sofas);

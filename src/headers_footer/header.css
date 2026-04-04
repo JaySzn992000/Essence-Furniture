@@ -11,7 +11,7 @@ grid-template-columns: 1.4fr 0.6fr 0.7fr 1.7fr;
 gap: 20px;
 text-align: start;
 padding-top: 33px;
-padding-left: 57px;
+padding-left: 47px;
 padding-bottom: 47px;
 }
 
@@ -39,6 +39,7 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 display: flex;
 gap: 10px;
 margin-top: 15px;
+flex-wrap: wrap;
 }
 
 .socials span {
@@ -56,6 +57,7 @@ cursor: pointer;
 font-size: 17px;
 text-align: start;
 margin-bottom: 21px;
+line-height: 1.7em;
 color: #000;
 }
 
@@ -90,7 +92,7 @@ margin-bottom: 10px;
 .newsletter_box input {
 flex: 1;
 border: none;
-padding: 17px 15px;
+padding: 15px 17px;
 outline: none;
 }
 
@@ -110,6 +112,10 @@ display: flex;
 justify-content: space-between;
 font-size: 13px;
 color: #666;
+}
+
+.payments  {
+margin-top: 1em;
 }
 
 .payments span {
@@ -149,6 +155,10 @@ font-size: 12px;
 margin-top: 10px;
 }
 
+.newsletter_box input {
+width: 25%;
+}
+
 }
 
 
@@ -174,9 +184,8 @@ width: 40px;
 height: 40px;
 }
 
-.newsletter_box input {
-padding: 10px 12px;
-width: 25%;
+.newsletter_box{
+width: 100%;
 }
 
 .newsletter_box button {
@@ -216,7 +225,6 @@ font-size: 13px;
 }
 
 }
-
 
 
 @media (min-width: 1025px) and (max-width: 1516px) { 

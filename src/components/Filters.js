@@ -137,11 +137,11 @@ style={{ width: "90%" }} />
 
 <div>
 {[
-"T-Shirts",
-"Shirts",
-"Jeans",
-"Trousers",
-"Shorts",
+"Sofas",
+"Beds",
+"Bookshelves",
+"Cabinets",
+"Tables",
 ].map((name) => (
 <label className="lable-Fontsize" key={name}>
 <input

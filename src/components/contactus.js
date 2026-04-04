@@ -2,8 +2,8 @@ import { useState } from "react";
 import emailjs from "emailjs-com";
 import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
-import ContactPickle from "../Slider/Contact_Achar1Hair.jpg";
 import "./Contact.css";
+// import ContactPickle from "../Slider/Contact_Achar1Hair.jpg";
 
 const Contactus = () => {
 
@@ -79,62 +79,62 @@ return (
 
 <div className="about_banner">
 
-  <img
-    className="banner_img"
-    src="https://www.kimirica.shop/cdn/shop/files/About-Us-Page-BANNER-01_1.jpg?v=1708598103&width=1800"
-    alt="banner"
-  />
+<img
+className="banner_img"
+src="https://www.kimirica.shop/cdn/shop/files/About-Us-Page-BANNER-01_1.jpg?v=1708598103&width=1800"
+alt="banner"
+/>
 
-  <div className="banner_content">
-    <h1>About Our Store</h1>
-    <p>Homepage &gt; Pages &gt; <span>About Our Store</span></p>
-  </div>
+<div className="banner_content">
+<h1>Contact Us</h1>
+<p>Homepage &gt; Pages &gt; <span>About Our Store</span></p>
+</div>
 
 </div>
 
 <main>
 
 <form onSubmit={sendEmail} className="contact_container">
-  <h2 className="contact_title">Get In Touch</h2>
-  <p className="contact_subtitle">
-    Use the form below to get in touch with the sales team
-  </p>
+<h2 className="contact_title">Get In Touch</h2>
+<p className="contact_subtitle">
+Use the form below to get in touch with the sales team
+</p>
 
-  <div className="contact_form">
-    <div className="row">
-      <input
-        type="text"
-        name="name"
-        placeholder="Your Name*"
-        value={formData.name}
-        onChange={handleChange}
-        required
-      />
+<div className="contact_form">
+<div className="row">
+<input
+type="text"
+name="name"
+placeholder="Your Name*"
+value={formData.name}
+onChange={handleChange}
+required
+/>
 
-      <input
-        type="email"
-        name="email"
-        placeholder="Your Email*"
-        value={formData.email}
-        onChange={handleChange}
-        required
-      />
-    </div>
+<input
+type="email"
+name="email"
+placeholder="Your Email*"
+value={formData.email}
+onChange={handleChange}
+required
+/>
+</div>
 
-    <textarea
-      name="message"
-      placeholder="Your Message*"
-      value={formData.message}
-      onChange={handleChange}
-      required
-    />
+<textarea
+name="message"
+placeholder="Your Message*"
+value={formData.message}
+onChange={handleChange}
+required
+/>
 
-    <button type="submit">Send Message</button>
+<button type="submit">Send Message</button>
 
-    {successMessage && (
-      <p className="success_message">{successMessage}</p>
-    )}
-  </div>
+{successMessage && (
+<p className="success_message">{successMessage}</p>
+)}
+</div>
 </form>
 
 </main>

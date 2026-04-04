@@ -110,7 +110,7 @@ navi("/shirts");
 };
 
 const naviToTops = () => {
-navi("/tops");
+navi("/sofas");
 };
 
 const naviGateShirt = () => {
@@ -122,11 +122,11 @@ navi("/trousers");
 };
 
 const naviToWomenJeans = () => {
-navi("/women-jeans");
+navi("/beds");
 };
 
 const naviToWomenTshirts = () => {
-navi("/women-t-shirts");
+navi("/book-shelves");
 };
 
 const naviGatePants = () => {
@@ -134,7 +134,7 @@ navi("/shorts");
 };
 
 const naviToWomenAccessories = () => {
-navi("/women-accessories");
+navi("/cabinets");
 };
 
 const naviGateSweaters = () => {
@@ -150,7 +150,7 @@ navi('/aboutus')
 }
 
 const naviToShoes = () => {
-navi('/shoes')
+navi('/tables')
 }
 
 const naviToSkinCare = () => {

@@ -40,22 +40,18 @@ onClick={() => navigate("/")} />
 
 <div className="footer_col">
 <h4>Collections</h4>
-<p onClick={() => navigate('/collections')}>Sofas</p>
-<p>Beds</p>
-<p>Dinning Tables</p>
-<p>Cabinets</p>
-<p>Bookshelves</p>
-<p>Tv Units</p>
+<p onClick={() => navigate('/sofas')}>Sofas</p>
+<p onClick={() => navigate('/beds')}>Beds</p>
+<p onClick={() => navigate('/cabinets')}>Cabinets</p>
+<p onClick={() => navigate('/book-shelves')}>Bookshelves</p>
 </div>
 
 <div className="footer_col">
 <h4>Customer Services</h4>
-<p>Grievances</p>
 <p onClick={() => navigate('/return-policy')}>Return & Refund</p>
 <p onClick={() => navigate('/privacy-policy')}>Privacy Policy</p>
 <p onClick={() => navigate('/terms-conditions')}>Terms & Conditions</p>
-<p>Orders FAQs</p>
-<p>My Wishlist</p>
+<p onClick={() => navigate('/faqs')}>Orders FAQs</p>
 </div>
 
 <div className="footer_col newsletter">

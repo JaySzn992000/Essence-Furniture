@@ -11,7 +11,7 @@ import { addToCart } from "../action/action";
 import FAqQuestions from "../components/FAqQuestions";
 
 
-const WomenTshirts = ({ showFilters = true, limit, addToCart }) => {
+const Cabinets = ({ showFilters = true, limit, addToCart }) => {
 
 const [allProducts, setAllProducts] = useState([]); 
 const [filteredProducts, setFilteredProducts] = useState([]);
@@ -21,7 +21,7 @@ const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
 axios
-.get("http://localhost:3001/fetchProductslistTshirt")
+.get("http://localhost:3001/fetchcabinets")
 .then((response) => {
 console.log("Fetched Mangoes Pickles products:", response.data); 
 setAllProducts(response.data); 
@@ -37,7 +37,7 @@ console.error("Error fetching Mangoes Pickles products:", error);
 useEffect(() => {
 if (query) {
 axios
-.get("http://localhost:3001/fetchProductslist", {
+.get("http://localhost:3001/fetchcabinets", {
 params: { search: query },
 })
 .then((response) => {
@@ -104,10 +104,12 @@ return text
 .replace(/(^-|-$)/g, '');      
 };
 
+
 useEffect(() => {
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
 setCartCount(cart.length);
 }, []);
+
 
 const handleAddToCart = (product) => {
 
@@ -164,7 +166,8 @@ wishlistStatus[productlist.id] ? "wishlist-active" : ""
 <img
 src={productlist.file_path}
 alt={productlist.name}
-loading="lazy" />
+loading="lazy"
+/>
 </Link>
 
 <div className="padding_contain">
@@ -201,6 +204,7 @@ onClick={() => handleAddToCart(productlist)}
 
 </div>
 ))}
+
 </div>
 
 </div>
@@ -220,4 +224,4 @@ onClick={() => handleAddToCart(productlist)}
 
 };
 
-export default connect(null, { addToCart })(WomenTshirts);
+export default connect(null, { addToCart })(Cabinets);

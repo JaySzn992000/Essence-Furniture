@@ -17,7 +17,7 @@ const pool = require("./config");
 app.use(cors({
 
 origin: [
-'https://htlondon.vercel.app',
+'https://essence-furniture.vercel.app',
 'http://localhost:3000'
 ],
 
@@ -25,7 +25,6 @@ methods: ['GET', 'POST', 'PUT', 'DELETE'],
 credentials: true
 
 }));
-
 
 
 app.use(express.json());
@@ -47,7 +46,7 @@ res.send("✅ Backend is Live & Working");
 
 
 app.get("/ping", (req, res) => {
-  res.status(200).send("Server is alive!");
+res.status(200).send("Server is alive!");
 });
 
 
@@ -323,21 +322,60 @@ app.use(express.static(path.join(__dirname, "public")));
 // });
 // });
 
+app.get("/fetchcabinets", async (req, res) => {
 
-app.get("/fetchProductslistTshirt", async (req, res) => {
-const exactMatchQuery = `
+const query = `
 SELECT *
 FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
+WHERE img ILIKE '%cabinets%'
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['AloeVeraGel']);
+const result = await pool.query(query);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
 res.status(500).json({ error: "Database query failed" });
 }
+
+});
+
+
+app.get("/fetchbookshelves", async (req, res) => {
+
+const query = `
+SELECT *
+FROM _imgproduct
+WHERE img ILIKE '%Bookshelves%'
+`;
+
+try {
+const result = await pool.query(query);
+res.json(result.rows);
+} catch (err) {
+console.error("Error fetching data:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+
+});
+
+
+app.get("/fetchProductslistTshirt", async (req, res) => {
+
+const query = `
+SELECT *
+FROM _imgproduct
+WHERE img ILIKE '%Bookshelves%'
+`;
+
+try {
+const result = await pool.query(query);
+res.json(result.rows);
+} catch (err) {
+console.error("Error fetching data:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+
 });
 
 
@@ -360,12 +398,12 @@ res.status(500).json({ error: "Database query failed" });
 // });
 
 
-app.get("/fetchProductslistLotus", async (req, res) => {
+app.get("/fetchsofas", async (req, res) => {
 
 const query = `
 SELECT *
 FROM _imgproduct
-WHERE img ILIKE '%lotus%'
+WHERE img ILIKE '%sofas%'
 `;
 
 try {
@@ -452,21 +490,22 @@ res.status(500).json({ error: "Database query failed" });
 // });
 
 
+app.get("/fetchbeds", async (req, res) => {
 
-app.get("/fetchProductslistShirt", async (req, res) => {
-const exactMatchQuery = `
+const query = `
 SELECT *
 FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
+WHERE img ILIKE '%beds%'
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['BananaPowder']);
+const result = await pool.query(query);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
 res.status(500).json({ error: "Database query failed" });
 }
+
 });
 
 
@@ -1816,66 +1855,67 @@ cb(null, Date.now() + path.extname(file.originalname));
 },
 });
 
+
 // Configure
 // multer for multiple fields
 
-const upload = multer({
-storage: storage,
-});
+// const upload = multer({
+// storage: storage,
+// });
 
-app.post(
-"/api/add-product",
-upload.fields([
-{ name: "image", maxCount: 1 },
-{ name: "imageone", maxCount: 1 },
-{ name: "imagetwo", maxCount: 1 },
-{ name: "imagethree", maxCount: 1 },
-]),
-(req, res) => {
-const { category, name, price, sizes, stock, description, review } =
-req.body;
+// app.post(
+// "/api/add-product",
+// upload.fields([
+// { name: "image", maxCount: 1 },
+// { name: "imageone", maxCount: 1 },
+// { name: "imagetwo", maxCount: 1 },
+// { name: "imagethree", maxCount: 1 },
+// ]),
+// (req, res) => {
+// const { category, name, price, sizes, stock, description, review } =
+// req.body;
 
-const imagePath = req.files.image
-? `/Images/${req.files.image[0].filename}`
-: null;
-const imagePathOne = req.files.imageone
-? `/Images/${req.files.imageone[0].filename}`
-: null;
-const imagePathTwo = req.files.imagetwo
-? `/Images/${req.files.imagetwo[0].filename}`
-: null;
-const imagePathThree = req.files.imagethree
-? `/Images/${req.files.imagethree[0].filename}`
-: null;
+// const imagePath = req.files.image
+// ? `/Images/${req.files.image[0].filename}`
+// : null;
+// const imagePathOne = req.files.imageone
+// ? `/Images/${req.files.imageone[0].filename}`
+// : null;
+// const imagePathTwo = req.files.imagetwo
+// ? `/Images/${req.files.imagetwo[0].filename}`
+// : null;
+// const imagePathThree = req.files.imagethree
+// ? `/Images/${req.files.imagethree[0].filename}`
+// : null;
 
-const query =
-"INSERT INTO imgproduct (img, name, price, file_path, sizes, file_path1, file_path2, file_path3, stock, description, review) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?)";
+// const query =
+// "INSERT INTO imgproduct (img, name, price, file_path, sizes, file_path1, file_path2, file_path3, stock, description, review) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?)";
 
-db.query(
-query,
-[
-category,
-name,
-price,
-imagePath,
-sizes,
-imagePathOne,
-imagePathTwo,
-imagePathThree,
-stock,
-description,
-review,
-],
-(err, result) => {
-if (err) {
-console.error("Error inserting product into database:", err);
-return res.status(500).send("Error adding product");
-}
-res.status(200).send("Product added successfully");
-}
-);
-}
-);
+// db.query(
+// query,
+// [
+// category,
+// name,
+// price,
+// imagePath,
+// sizes,
+// imagePathOne,
+// imagePathTwo,
+// imagePathThree,
+// stock,
+// description,
+// review,
+// ],
+// (err, result) => {
+// if (err) {
+// console.error("Error inserting product into database:", err);
+// return res.status(500).send("Error adding product");
+// }
+// res.status(200).send("Product added successfully");
+// }
+// );
+// }
+// );
 
 
 // Dashboard
@@ -1888,83 +1928,78 @@ res.status(200).send("Product added successfully");
 
 // 🔑 Cloudinary Config
 
-// cloudinary.config({
-//   cloud_name: "dwwmpm9qy", // आपका cloud_name
-//   api_key: "428986251698984",
-//   api_secret: "RWf2H7aeMTAEL2pTguwLKIS-110",
-// });
+cloudinary.config({
+cloud_name: "dwwmpm9qy", 
+api_key: "428986251698984",
+api_secret: "RWf2H7aeMTAEL2pTguwLKIS-110",
+});
 
-// // ✅ Multer (temp folder)
-// const upload = multer({ dest: "uploads/" });
+const upload = multer({ dest: "uploads/" });
 
-// // ✅ Helper → file को Cloudinary पर upload करके URL return
-// const uploadToCloudinary = async (file) => {
-//   if (!file) return null;
-//   const result = await cloudinary.uploader.upload(file.path, {
-//     folder: "products",
-//   });
-//   fs.unlinkSync(file.path); // local temp file delete
-//   return result.secure_url; // Cloudinary का URL
-// };
+const uploadToCloudinary = async (file) => {
+if (!file) return null;
+const result = await cloudinary.uploader.upload(file.path, {
+folder: "products",
+});
+fs.unlinkSync(file.path);
+return result.secure_url;
+};
 
-// // ✅ Add Product API (PostgreSQL compatible)
-// app.post(
-//   "/api/add-product",
-//   upload.fields([
-//     { name: "image", maxCount: 1 },
-//     { name: "imageone", maxCount: 1 },
-//     { name: "imagetwo", maxCount: 1 },
-//     { name: "imagethree", maxCount: 1 },
-//   ]),
-//   async (req, res) => {
-//     try {
-//       console.log("📩 Body Data:", req.body);
-//       console.log("📸 Files Data:", req.files);
+app.post(
+"/api/add-product",
+upload.fields([
+{ name: "image", maxCount: 1 },
+{ name: "imageone", maxCount: 1 },
+{ name: "imagetwo", maxCount: 1 },
+{ name: "imagethree", maxCount: 1 },
+]),
+async (req, res) => {
+try {
+console.log("📩 Body Data:", req.body);
+console.log("📸 Files Data:", req.files);
 
-//       const { category, name, price, sizes, stock, description, review } =
-//         req.body;
+const { category, name, price, sizes, stock, description, review } =
+req.body;
 
-//       // Cloudinary Upload
-//       const imagePath = await uploadToCloudinary(req.files.image?.[0]);
-//       const imagePathOne = await uploadToCloudinary(req.files.imageone?.[0]);
-//       const imagePathTwo = await uploadToCloudinary(req.files.imagetwo?.[0]);
-//       const imagePathThree = await uploadToCloudinary(req.files.imagethree?.[0]);
+const imagePath = await uploadToCloudinary(req.files.image?.[0]);
+const imagePathOne = await uploadToCloudinary(req.files.imageone?.[0]);
+const imagePathTwo = await uploadToCloudinary(req.files.imagetwo?.[0]);
+const imagePathThree = await uploadToCloudinary(req.files.imagethree?.[0]);
 
-//       // ✅ PostgreSQL Insert Query
-//       const query = `
-//         INSERT INTO _imgproduct 
-//         (img, name, price, file_path, sizes, file_path1, file_path2, file_path3, stock, description, review) 
-//         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
-//         RETURNING id;
-//       `;
+const query = `
+INSERT INTO _imgproduct 
+(img, name, price, file_path, sizes, file_path1, file_path2, file_path3, stock, description, review) 
+VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
+RETURNING id;
+`;
 
-//       const values = [
-//         category,
-//         name,
-//         price,
-//         imagePath,
-//         sizes,
-//         imagePathOne,
-//         imagePathTwo,
-//         imagePathThree,
-//         stock,
-//         description,
-//         review,
-//       ];
+const values = [
+category,
+name,
+price,
+imagePath,
+sizes,
+imagePathOne,
+imagePathTwo,
+imagePathThree,
+stock,
+description,
+review,
+];
 
-//       const result = await pool.query(query, values);
+const result = await pool.query(query, values);
 
-//       res.status(200).json({
-//         message: "✅ Product added successfully",
-//         productId: result.rows[0].id,
-//       });
-//     } catch (err) {
-//       console.error("❌ Upload failed:", err);
-//       res.status(500).send("Upload failed");
-//     }
-//   }
+res.status(200).json({
+message: "✅ Product added successfully",
+productId: result.rows[0].id,
+});
+} catch (err) {
+console.error("❌ Upload failed:", err);
+res.status(500).send("Upload failed");
+}
+}
 
-// );
+);
 
 
 // const storage = multer.diskStorage({
