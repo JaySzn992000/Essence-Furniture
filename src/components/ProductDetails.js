@@ -10,7 +10,6 @@ import "./ProductDetails.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-medium-image-zoom/dist/styles.css";
-import winsomeproductdetails from "../Slider/winsomeproductdetails.png";
 import axios from "axios";
 
 const ProductDetails = ({ addToCart, cart }) => {
@@ -200,8 +199,8 @@ GO TO CART
 </button>
 </div>
 
-<br />
-<img className="flex_shippedImg" src={winsomeproductdetails} />
+<br/>
+
 </div>
 </div>
 

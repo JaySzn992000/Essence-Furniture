@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import Filters from "../components/Filters";
@@ -17,7 +17,7 @@ const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
 axios
-.get("http://localhost:3001/fetchProductslist")
+.get("https://antara-gug4.onrender.com/fetchProductslist")
 .then((response) => {
 setAllProducts(response.data);
 setFilteredProducts(limit ? response.data.slice(0, limit) : response.data);
@@ -30,7 +30,7 @@ console.error("Error fetching products:", error);
 useEffect(() => {
 if (query) {
 axios
-.get("http://localhost:3001/fetchProductslist", {
+.get("https://antara-gug4.onrender.com/fetchProductslist", {
 params: { search: query },
 })
 .then((response) => {
@@ -147,23 +147,6 @@ className="product_image"
 <li className="product_price">{product.price}</li>
 </div>
 
-<div className="review_section">
-<img
-src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"
-loading="lazy"
-alt="review"
-className="review_icon"
-/>
-<li className="review_separator"></li>
-<li className="review_text">{product.review}</li>
-</div>
-
-<button
-className="add_crtPickle"
-onClick={() => handleAddToCart(product)}
->
-<span>ADD TO CART</span>
-</button>
 
 </div>
 </div>
