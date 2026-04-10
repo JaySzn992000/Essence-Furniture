@@ -17,6 +17,7 @@ const location = useLocation();
 const navigate = useNavigate();
 
 useEffect(() => {
+
 const storedQuantities =
 JSON.parse(localStorage.getItem("quantities")) || [];
 const initialQuantities = cart.map(

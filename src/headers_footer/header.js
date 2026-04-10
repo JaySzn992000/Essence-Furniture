@@ -84,6 +84,7 @@ Sign up for our newsletter and get 10% off your first purchase
 </div>
 
 </footer>
+
 );
 };
 

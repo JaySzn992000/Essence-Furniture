@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { addToCart } from "../action/action";
 import axios from "axios";
 import "./ProductListmodule.css";
+import Banner1 from '../Slider/Banner1.jpg'
 import Header from "../headers_footer/header";
 
 const Collections = ({ addToCart}) => {
@@ -19,7 +20,6 @@ const [cartCount, setCartCount] = useState(0);
 const [arrayStore, setArrayStore] = useState([]);
 const [products, setProducts] = useState([]);
 
-
 useEffect(() => {
 
 axios
@@ -27,7 +27,6 @@ axios
 .then((res) => setProducts(res.data))
 .catch((err) => console.error(err));
 }, []);
-
 
 const handleAddToCart = (product) => {
 if (!product) return;
@@ -45,7 +44,6 @@ localStorage.setItem(`cart-added-${product.id}`, JSON.stringify(true));
 alert("Product added to cart!");
 }
 };
-
 
 useEffect(() => {
 const storedWishlistStatus =
@@ -147,7 +145,7 @@ return (
 
 <Navbar wishlistCount={wishlistCount} cartCount={cartCount} />
 
-<img className="ListBanner" src="https://www.kimirica.shop/cdn/shop/files/Valentine-Store-2025-Inner-Pages-BANNER-01.jpg?v=1768802129&width=1920"></img>
+<img className="ListBanner" src={Banner1}></img>
 
 <Filters allProducts={allProducts} onFilterUpdate={handleFilterUpdate} />
 
@@ -204,13 +202,6 @@ src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"
 </div>
 
 </div>
-
-{/* <button
-className="add_crt"
-onClick={() => handleAddToCart(productlist)}
->
-<span>ADD TO CART</span>
-</button> */}
 
 </div>
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DashboardNav from "./DashboardNav";
 import DashboardSlider from "./DashboardSlider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -42,7 +42,6 @@ setNavContainer(!navContainer);
 setRelativeClass(!relativeClass);
 setProductClass(!productClass);
 };
-
 
 const naviupdateProfile = useNavigate()
 const updateProfile = () => {
@@ -103,8 +102,6 @@ navContainer={navContainer}
 
 </div>
 
-{/*  */}
-
 <div className="flx_adminPr">
 <i onClick={logoutHandler}
 className="fa fa-edit"></i> 
@@ -118,11 +115,7 @@ className="fa fa-sign-out"></i>
 <li>Sign Out</li>
 </div>
 
-{/*  */}
-
 </div>
-
-{/*  */}
 
 </div>
 </div>

@@ -36,6 +36,7 @@ loading="lazy"
 <button>Discover Now →</button>
 </div>
 </div>
+
 </div>
 
 );

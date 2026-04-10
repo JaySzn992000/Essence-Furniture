@@ -1,3 +1,4 @@
+
 .footer {
 background: #fff;
 border-top: 1px solid #eee;
@@ -12,7 +13,7 @@ gap: 20px;
 text-align: start;
 padding-top: 33px;
 padding-left: 47px;
-padding-bottom: 47px;
+padding-bottom: 77px;
 }
 
 .footer_logo {
@@ -64,7 +65,7 @@ color: #000;
 .footer_col p {
 font-size: 14px;
 color: #231f20;
-margin: 23px 0;
+margin: 27px 0;
 cursor: pointer;
 text-align: start;
 }
@@ -77,12 +78,12 @@ margin-bottom: 15px;
 
 .newsletter_text {
 line-height: 2em;
-width: 85%;
+width: 75%;
 }
 
 .newsletter_box {
 display: flex;
-width: 80%;
+width: 75%;
 border: 1px solid #ccc;
 border-radius: 30px;
 overflow: hidden;

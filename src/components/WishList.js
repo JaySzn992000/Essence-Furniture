@@ -65,8 +65,6 @@ return (
 
 )}
 
-
-
 {wishlist && wishlist.length > 0 ? (
 <ul>
 {wishlist.map((item, index) => (
@@ -78,8 +76,6 @@ className="wishlist_item"
 
 <div className="wishlist_details">
 
-
-
 <div>
 
 <img
@@ -89,8 +85,6 @@ className="cart-item-image"
 loading="lazy"
 />
 </div>
-
-
 
 <div>
 <li className="inStock fontSizeSpn">
@@ -117,7 +111,7 @@ alt=""
 ></img>
 </div>
 
-<div>  </div>
+<div></div>
 
 </div>
 </li>

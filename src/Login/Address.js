@@ -41,7 +41,6 @@ const reactLocation = useLocation();
 const totalAmount = reactLocation.state?.totalAmount || 0;
 const quantities = reactLocation.state?.quantities || [];
 
-
 useEffect(() => {
 const storedUser = localStorage.getItem("loggedInUser");
 if (storedUser) {
@@ -358,6 +357,7 @@ required
 </div>
 
 <Header></Header>
+
 </div>
 
 );

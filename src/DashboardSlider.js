@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import "./DashboardSlider.css";
 
@@ -27,18 +26,15 @@ const pdmanagmenthandler = () => {
 naviManagmentProduct("/Productmanagment");
 };
 
-
 const naviAdmin = useNavigate()
 const adminNavi = () => {
 naviAdmin('/AdminUsers')
 }
 
-
 const NaviUsers = useNavigate()
 const userNavi = () => {
 NaviUsers('/UsersDetails')
 }
-
 
 const adminProfileNavi = useNavigate()
 const adminProfile = () => {
@@ -91,18 +87,15 @@ src="https://cdn-icons-png.flaticon.com/128/1828/1828673.png"
 <i className="fa fa-angle-down"></i>
 </div>
 
-
 <div style={{lineHeight : '2.1em'}}>
 <li onClick={adminProfile}>Profile & Data Protection</li>
 </div>
-
 
 <div>
 <i className="fa fa-user"></i>
 <li onClick={adminProfile}>My Profile</li>
 <i className="fa fa-angle-down"></i>
 </div>
-
 
 <div>
 <i class="fas fa-database"></i>
@@ -117,8 +110,6 @@ src="https://cdn-icons-png.flaticon.com/128/1828/1828673.png"
 </div>
 
 </section>
-
-{/*  */}
 
 <section></section>
 

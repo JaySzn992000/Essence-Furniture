@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminForget.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -108,8 +108,8 @@ inputHandler(e);
 
 <span
 className="eye-icon"
-onClick={() => setShowPassword(!showPassword)}
->
+onClick={() => setShowPassword(!showPassword)} >
+    
 {showPassword ? <FaEyeSlash /> : <FaEye />}
 </span>
 </div>

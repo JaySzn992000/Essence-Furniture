@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import emailjs from "emailjs-com";
 import "./Message.css";
 
@@ -92,7 +92,7 @@ value={formData.name}
 onChange={handleChange}
 required
 />{" "}
-<br />
+<br/>
 
 <h4>Email</h4>
 

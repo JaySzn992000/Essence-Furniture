@@ -8,11 +8,11 @@ import "./ProductListmodule.css";
 import "./Home.css";
 import Pickles from "../Products/Pickle";
 import Topnav from "../headers_footer/Topnav";
-import Iconicselection from "./Iconicselection";
 import AboutHm from "./AboutHm";
 import Commitments from "./Commitments";
 import ShopCategory from "./ShopCategory";
 import Featured from "./Featured";
+// import Iconicselection from "./Iconicselection";
 
 
 

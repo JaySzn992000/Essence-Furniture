@@ -6,12 +6,12 @@ import Heart from "../Images_ToolsSymbols/Heart.jpg";
 import User from "../Images_ToolsSymbols/user.jpg";
 import Cart from "../Images_ToolsSymbols/Cart.jpg";
 import Bars from "../Images_ToolsSymbols/Bars.png";
-import eyeliner from "../Slider/eyeliner.png"
-import compact from "../Slider/compact.png"
 import facilnav from "../Slider/facilnav.png"
 import lipstick from "../Slider/lipstick.png"
 import { useState, useEffect } from "react";
 import "./navbar.css";
+// import eyeliner from "../Slider/eyeliner.png"
+// import compact from "../Slider/compact.png"
 
 const Navbar = () => {
 
@@ -71,7 +71,6 @@ const naviProductPage = () => {
 navi("/collections");
 };
 
-
 const naviToStoreBrand = () => {
 navi("/collections");
 };
@@ -91,7 +90,6 @@ profileNavi("/Profile");
 }
 
 };
-
 
 const navigateHome = () => {
 navi("/");

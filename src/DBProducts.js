@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DashboardNav from "./DashboardNav";
 import DashboardSlider from "./DashboardSlider";
 import { useNavigate } from "react-router-dom";
@@ -96,7 +96,6 @@ DB_products_PRQuery ? "DB_products_PRQuery-inside" : ""
 <th>Price</th>
 </tr>
 </thead>
-
 
 <tbody>
 {storeDB.map((DisDb, index) => (

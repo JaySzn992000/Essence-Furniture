@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./Adminlogin.css";
@@ -19,7 +19,6 @@ value = value.replace(/\s/g, "");
 setFormdata(prev => ({ ...prev, [name]: value }));
 
 }
-
 
 const [showPassword, setShowPassword] = useState(false);
 const navigate = useNavigate();
@@ -48,8 +47,6 @@ return;
 }
 
 try {
-
-// https://omega-zg6z.onrender.com/fetchAdmin
 
 const response = await fetch("https://omega-zg6z.onrender.com/fetchAdmin", {
 method: "POST",
@@ -82,7 +79,6 @@ const createAccount = () => navigate("/AdminRegisteration");
 const AdminForget = () => navigate("/AdminForget");
 
 return (
-
 
 <div className="admin-login-container">
 

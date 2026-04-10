@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import uploadProductImg from "./Images_ToolsSymbols/uploadProduct.jpg";
 import "./UpdateProduct.css";
 
@@ -70,13 +70,11 @@ onSubmit={handleUpdateProduct}
 className="update-product-form"
 >
 
-
 <div className="Flx_IconPrct">
 <img className="IconAddPrdct"
 src="https://cdn-icons-png.flaticon.com/128/9404/9404720.png"></img>
 <h3 id="addTag">UPDATE PRODUCTS</h3>
 </div>
-
 
 <section>
 

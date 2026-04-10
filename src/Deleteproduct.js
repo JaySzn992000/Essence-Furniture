@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Deleteproduct.css";
 
 function Delete({ Delete_relativeCon, Delete_formCon }) {
@@ -32,8 +32,7 @@ setMessage("An error occurred while deleting the product.");
 }
 
 setProductName("");
-};
-
+}
 
 return (
 
@@ -72,6 +71,7 @@ onChange={(e) => setProductName(e.target.value)}
 </form>
 </div>
 </div>
+
 </div>
 
 );

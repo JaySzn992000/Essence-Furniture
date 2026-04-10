@@ -109,13 +109,11 @@ dashboard_containerCon ? "dashboard-containerConinside" : ""
 
 className="addProduct_form">
 
-
 <div className="Flx_IconPrct">
 <img  className="IconUpdatePrdct"
 src="https://cdn-icons-png.flaticon.com/128/5444/5444684.png"></img>
 <h3 id="addTag">ADD PRODUCTS</h3>
 </div>
-
 
 <section>
 
@@ -177,7 +175,6 @@ placeholder="Price"
 
 </div>
 
-
 {/*  */}
 
 <div className="addProductDiv">
@@ -208,7 +205,6 @@ maxLength={10}
 />
 
 </div>
-
 
 {/*  */}
 

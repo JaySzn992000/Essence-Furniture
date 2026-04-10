@@ -77,7 +77,6 @@ setMessage("An error occurred");
 console.error(error);
 }
 };
-
 const resetPasswordHandler = async (e) => {
 
 e.preventDefault();
@@ -146,7 +145,6 @@ console.error(error);
 
 
 return (
-
 
 <div>
 

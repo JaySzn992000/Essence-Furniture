@@ -29,18 +29,15 @@ e.preventDefault();
 const { adminuser, adminpass } = formData;
 const usernamePattern = /^(?=.*[0-9_.]).{3,}$/;
 
-
 if (!adminuser.trim() || !adminpass.trim()) {
 alert("All fields are required!");
 return;
 }
 
-
 if (!usernamePattern.test(adminuser.trim())) {
 alert("Username must be at least 3 characters and include at least one number or special character (_ or .)");
 return;
 }
-
 
 if (adminuser.trim().length < 3) {
 alert("Username must be at least 3 characters long.");
@@ -84,7 +81,6 @@ alert("Something went wrong. Please try again.");
 
 
 return (
-
 
 <div className="admin-registration-container">
 

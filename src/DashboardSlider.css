@@ -1,4 +1,3 @@
-/* Done */
 
 .slider_Dash {
 
@@ -35,7 +34,6 @@ cursor: pointer;
 }
 
 
-
 .slider_Dash li {
 font-size: 0.9rem;
 width: 62%;
@@ -49,37 +47,30 @@ transform: translateX(0);
 transform: translateX(-100%);
 }
 
-
-
 .slider_Dash .Img_DashLogo {
 width: 33px;
 margin: 0.7em 0em -0.3em 0em;
 border-radius: 7;
 }
 
-
 .slider_Dash div li,
 i {
-color: rgb(220, 220, 220);
+color: #DCDCDC;
 }
-
 
 .slider_Dash .fa-angle-down {
 font-size: .9rem;
 }
-
 
 .slider_Dash div i {
 font-size: 1.3rem;
 margin-left: auto;
 }
 
-
 .slider_Dash section {
 margin: 0.9em 0em 4.7em -0.2em;
 cursor: pointer;
 }
-
 
 .slider_Dash div {
 display: flex;
@@ -87,20 +78,16 @@ align-items: center;
 margin-top: 2.1em;
 line-height: 1.4em;
 gap: 1.7em;
-
 }
-
 
 .prodctMngmt {
 line-height: 2.3em;
 }
 
-
 .slider_Dash div img {
 width: 27px;
-background-color: rgb(255, 255, 255);
+background-color: #DCDCDC;
 }
-
 
 
 
@@ -144,11 +131,9 @@ margin: 0.9em 0em 5.7em -0.3em;
 transform: translateX(-100%);
 }
 
-
 .slider_Dash.slider-out {
 transform: translateX(0%);
 }
-
 
 .slider_Dash {
 height: 100vh;
@@ -156,16 +141,13 @@ margin-top : 3.8em;
 width: 287px;
 }
 
-
 .slider_Dash div {
 margin-top: 2.1em;
 }
 
-
 .slider_Dash section {
 margin: 0.9em 0em 5.7em -0.3em;
 }
-
 
 .slider_Dash .Img_DashLogo {
 margin: 0.3em 0em -0.9em 0em;
@@ -190,6 +172,7 @@ margin-top: 2.1em;
 .slider_Dash section {
 margin: 0.9em 0em 5.7em -0.3em;
 }
+
 }
 
 
@@ -203,6 +186,7 @@ margin-top: 1.7em;
 .slider_Dash section {
 margin: 0.9em 0em 5.7em -0.3em;
 }
+
 }
 
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 import { useNavigate } from "react-router-dom";
 import './AdminUpdate.css';
@@ -97,7 +97,6 @@ alert(error.message || "Update failed.");
 const togglePasswordVisibility = () => {
 setShowPassword(!showPassword);
 };
-
 
 const navigate = useNavigate();
 

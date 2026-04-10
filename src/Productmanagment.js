@@ -25,7 +25,6 @@ const [update_containerCon, setupdate_containerCon] = useState(false);
 const [Delete_relativeCon, setDelete_relativeCon] = useState(false);
 const [Delete_formCon, setDelete_formCon] = useState(false);
 
-
 const toggleSidebar = () => {
 
 setSidebarOpen((prevState) => !prevState);
@@ -42,7 +41,6 @@ setDelete_formCon(prevState => !prevState);
 
 };
 
-
 const navigate = useNavigate();
 
 useEffect(() => {
@@ -52,7 +50,6 @@ if (!isLoggedIn) {
 navigate("/adminlogin");
 }
 }, [navigate] );
-
 
 return (
 
@@ -69,7 +66,6 @@ Product_relativeCon={Product_relativeCon}
 dashboard_containerCon={dashboard_containerCon}
 />
 
-
 <UpdateProduct Update_relativeCon={Update_relativeCon} 
 update_containerCon={update_containerCon}
 ></UpdateProduct>
@@ -77,7 +73,6 @@ update_containerCon={update_containerCon}
 <Deleteproduct Delete_relativeCon={Delete_relativeCon}
 Delete_formCon={Delete_formCon}
 ></Deleteproduct>
-
 
 </div>
 

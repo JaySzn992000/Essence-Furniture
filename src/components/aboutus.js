@@ -41,13 +41,13 @@ PureChair - Offering rare and beautiful items all over the india
 
 <div className="about_tabs">
 <span className="active">Introduction</span>
-<span>Our Vision</span>
+{/* <span>Our Vision</span>
 <span>What Sets Us Apart</span>
-<span>Our Commitment</span>
+<span>Our Commitment</span> */}
 </div>
 
 <p>
-Welcome to PureChair Store, your premier destination for luxury-forward
+Welcome to Essence Furniture Store, your premier destination for luxury-forward
 furniture. We pride ourselves on offering a curated selection of rare
 and beautiful items sourced both locally and globally. Our mission is
 to bring you the latest trends and timeless styles, ensuring every piece

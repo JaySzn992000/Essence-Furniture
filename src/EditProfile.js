@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./headers_footer/navbar";
 import Header from "./headers_footer/header";
 import { useLocation } from "react-router";
@@ -123,7 +123,7 @@ setShowPassword(!showPassword);
 return (
 
 <div>
-  
+
 <Navbar></Navbar>
 
 <form onSubmit={handleSubmitUpdate} className="Frm_edit">
@@ -153,7 +153,6 @@ maxLength={50}
 />
 </div>
 
-{/*  */}
 
 <div className="password-container">
 
@@ -187,8 +186,6 @@ maxLength={10}
 onChange={handleInputChange}
 />
 </div>
-
-{/*  */}
 
 <h4>ID</h4>
 <div>

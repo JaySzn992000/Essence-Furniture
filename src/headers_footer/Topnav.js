@@ -1,6 +1,14 @@
 import "./Topnav.css";
+import { Navigate, useNavigate } from "react-router";
 
 const Topnav = () => {
+
+const navigate = useNavigate()
+
+const NaviHome = () => {
+navigate('/')
+}
+
 
 return (
 
@@ -8,7 +16,7 @@ return (
 
 <div className="topnav">
 <div className="topnav-center">
-<li><a>Home</a></li>
+<li onClick={NaviHome}><a>Home</a></li>
 </div>
 </div>
 

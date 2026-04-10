@@ -1,4 +1,3 @@
-// Done
 
 // ADD_TO_CART
 

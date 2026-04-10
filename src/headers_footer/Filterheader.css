@@ -1,23 +1,21 @@
 
-
 .headerFlex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  row-gap: 1em;
-  column-gap: 1.5em;
-  background-color: #100424;
-  border-bottom: 1px solid gainsboro;
-  margin-top: 2.1em;
-  padding: .5em;
-  padding-top: 31px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+row-gap: 1em;
+column-gap: 1.5em;
+background-color: #100424;
+border-bottom: 1px solid #DCDCDC;
+margin-top: 2.1em;
+padding: .5em;
+padding-top: 31px;
 }
 
-
 .ImgHeader {
-  width: 163px;
-  height: auto;
+width: 163px;
+height: auto;
 }
 
 
@@ -61,31 +59,27 @@ text-align: start;
 gap: 5.3em;
 }
 
-
 .headerFilter ul {
 line-height: 3em;
 margin: 0;
 }
 
 .headerFilter ul h3 {
-color: rgb(0, 0, 0);
+color: #000000;
 margin-bottom: .7em;
 font-size: 1.1rem;
 }
 
-
 .div_header_Filter h4 {
-    font-size: .9rem;
+font-size: .9rem;
 }
 
-
 .headerFilter ul li {
-color: rgb(247, 243, 243);
+color: #F7F3F3;
 transition: 0.5s;
 font-size: .8rem;
 cursor: pointer;
 }
-
 
 .headerFilter ul li:hover {
 color: #f8a424;
@@ -108,8 +102,6 @@ margin-left: 0;
 flex-direction: column;
 gap: 1.3em;
 }
-
-/* .. THis is for Logo in Stating ... .  */
 
 .header_dv {
 text-align: start;
@@ -163,7 +155,6 @@ margin-left: 27vw;
 margin-left: 297px;
 padding: 67px 37px 207px 57px;
 }
-
 
 .headerFilter .header_dvLogo {
 width: 133px;

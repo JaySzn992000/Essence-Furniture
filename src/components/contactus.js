@@ -3,7 +3,6 @@ import emailjs from "emailjs-com";
 import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
 import "./Contact.css";
-// import ContactPickle from "../Slider/Contact_Achar1Hair.jpg";
 
 const Contactus = () => {
 

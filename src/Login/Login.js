@@ -86,6 +86,7 @@ naviForgt("/ForgetPass");
 return (
 
 <div>
+
 <Navbar />
 
 <form onSubmit={loginHanlder} className="logged_formFlex" id="logged_form">

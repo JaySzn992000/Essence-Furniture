@@ -13,12 +13,10 @@ const app = express();
 require("dotenv").config();
 const pool = require("./config");
 
-
 app.use(cors({
 
 origin: [
 'https://essence-furniture.vercel.app',
-'http://localhost:3000'
 ],
 
 methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -223,7 +221,7 @@ app.post("/registerationPost", async (req, res) => {
 const { name, email, password, mobileno } = req.body;
 
 try {
-// Step 1: Check for duplicate mobile
+// Check for duplicate mobile
 const checkMobileQuery = `
 SELECT mobileno FROM _registeration WHERE mobileno = $1 LIMIT 1
 `;
@@ -236,7 +234,7 @@ message: "Mobile number already registered",
 });
 }
 
-// Step 2: Check for duplicate email
+// Check for duplicate email
 const checkEmailQuery = `
 SELECT email FROM _registeration WHERE email = $1 LIMIT 1
 `;
@@ -249,7 +247,8 @@ message: "Email address already registered",
 });
 }
 
-// Step 3: Insert new user
+// Insert new user
+
 const insertQuery = `
 INSERT INTO _registeration (name, email, password, mobileno)
 VALUES ($1, $2, $3, $4)
@@ -271,7 +270,6 @@ message: "System error. Please try later.",
 });
 
 
-
 // app.get("/fetchCartGet", (req, res) => {
 // const FetchQuery = "SELECT * FROM ecart";
 // db.query(FetchQuery, (err, result) => {
@@ -290,7 +288,7 @@ const fetchQuery = "SELECT * FROM _ecart";
 
 try {
 const result = await pool.query(fetchQuery);
-console.log(result.rows); // .rows needed in PostgreSQL
+console.log(result.rows); 
 res.status(200).json(result.rows);
 } catch (err) {
 console.error("Error fetched:", err.message);
@@ -581,7 +579,6 @@ res.status(500).json({ error: "Database query failed" });
 });
 
 
-
 // app.get("/fetchProductslistSweatshirt", (req, res) => {
 // const exactMatchQuery = `
 // SELECT *
@@ -856,7 +853,6 @@ res.status(500).json({ error: "Database query failed" });
 // });
 
 
-
 app.get("/fetchProductslist", async (req, res) => {
 try {
 const result = await pool.query("SELECT * FROM _imgproduct");
@@ -866,7 +862,6 @@ console.error("Error fetching data:", err.message);
 res.status(500).json({ error: "Database query failed" });
 }
 });
-
 
 
 // app.get("/fetchProductDetails", (req, res) => {
@@ -883,7 +878,6 @@ res.status(500).json({ error: "Database query failed" });
 // });
 
 //
-
 
 app.get("/fetchProductDetails", async (req, res) => {
 const fetchQuery = "SELECT * FROM _imgproduct";
@@ -911,7 +905,6 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 // }
 // });
 // });
-
 
 
 app.post("/fetchlogin", async (req, res) => {
@@ -958,7 +951,6 @@ res.status(500).json({ message: "Error fetched", error: err.message });
 // });
 
 
-
 app.post("/verifyemail", async (req, res) => {
 const { email } = req.body;
 
@@ -983,6 +975,7 @@ return res
 .json({ message: "Error fetching email", error: err.message });
 }
 });
+
 
 // Reset Password Endpoint
 // app.post("/resetpassword", (req, res) => {
@@ -1019,33 +1012,35 @@ return res
 
 
 app.post("/resetpassword", async (req, res) => {
-  const { email, newPassword } = req.body;
 
-  if (!email || !newPassword) {
-    return res.status(400).json({ message: "Missing fields" });
-  }
+const { email, newPassword } = req.body;
 
-  try {
-    const checkUser = await pool.query(
-      "SELECT * FROM _registeration WHERE email = $1",
-      [email]
-    );
+if (!email || !newPassword) {
+return res.status(400).json({ message: "Missing fields" });
+}
 
-    if (checkUser.rows.length === 0) {
-      return res.status(404).json({ message: "User not found" });
-    }
+try {
+const checkUser = await pool.query(
+"SELECT * FROM _registeration WHERE email = $1",
+[email]
+);
 
-    await pool.query(
-      "UPDATE _registeration SET password = $1 WHERE email = $2",
-      [newPassword, email]
-    );
+if (checkUser.rows.length === 0) {
+return res.status(404).json({ message: "User not found" });
+}
 
-    return res.json({ message: "Password updated successfully" });
+await pool.query(
+"UPDATE _registeration SET password = $1 WHERE email = $2",
+[newPassword, email]
+);
 
-  } catch (err) {
-    console.error("RESET ERROR:", err.message);
-    return res.status(500).json({ message: "Server error" });
-  }
+return res.json({ message: "Password updated successfully" });
+
+} catch (err) {
+console.error("RESET ERROR:", err.message);
+return res.status(500).json({ message: "Server error" });
+}
+
 });
 
 
@@ -1148,7 +1143,7 @@ user_id, price, name, img, quantity, user_name, user_mobile, user_email
 ${values.map((_, i) => `($${i * 8 + 1}, $${i * 8 + 2}, $${i * 8 + 3}, $${i * 8 + 4}, $${i * 8 + 5}, $${i * 8 + 6}, $${i * 8 + 7}, $${i * 8 + 8})`).join(", ")}
 `;
 
-// Flatten the values array for query parameters
+
 const flatValues = values.flat();
 
 try {
@@ -1159,6 +1154,7 @@ res.status(200).json({ message: "Items added to cart", rowCount: result.rowCount
 console.error("Error adding items to cart:", err.message);
 res.status(500).json({ message: "Error adding items to cart", error: err.message });
 }
+
 });
 
 
@@ -1219,7 +1215,6 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 });
 
 
-
 // app.get("/historyfetchcustomer", (req, res) => {
 // const historyItemscust = "SELECT * FROM custorder";
 // db.query(historyItemscust, (err, result) => {
@@ -1235,7 +1230,6 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 
 //
 
-
 app.get("/historyfetchcustomer", async (req, res) => {
 const fetchQuery = "SELECT * FROM _custorder";
 
@@ -1248,8 +1242,6 @@ console.error("Fetch error:", err.message);
 res.status(500).json({ message: "Fetch error", error: err.message });
 }
 });
-
-
 
 
 // app.post("/resetAdminPassword", (req, res) => {
@@ -1308,31 +1300,31 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 
 
 app.post("/resetAdminPassword", async (req, res) => {
-  const { adminuser, newPassword } = req.body;
+const { adminuser, newPassword } = req.body;
 
-  if (!adminuser || !newPassword) {
-    return res.status(400).json({ message: "Missing fields" });
-  }
+if (!adminuser || !newPassword) {
+return res.status(400).json({ message: "Missing fields" });
+}
 
-  try {
-    const checkUser = await pool.query(
-      "SELECT * FROM _admindashboard WHERE adminuser = $1",
-      [adminuser]
-    );
+try {
+const checkUser = await pool.query(
+"SELECT * FROM _admindashboard WHERE adminuser = $1",
+[adminuser]
+);
 
-    if (checkUser.rows.length === 0) {
-      return res.status(404).json({ message: "User not found" });
-    }
+if (checkUser.rows.length === 0) {
+return res.status(404).json({ message: "User not found" });
+}
 
-    await pool.query(
-      "UPDATE _admindashboard SET adminpass = $1 WHERE adminuser = $2",
-      [newPassword, adminuser]
-    );
+await pool.query(
+"UPDATE _admindashboard SET adminpass = $1 WHERE adminuser = $2",
+[newPassword, adminuser]
+);
 
-    res.json({ message: "Password updated successfully" });
-  } catch (err) {
-    res.status(500).json({ message: "Error updating password", error: err.message });
-  }
+res.json({ message: "Password updated successfully" });
+} catch (err) {
+res.status(500).json({ message: "Error updating password", error: err.message });
+}
 });
 
 
@@ -1540,28 +1532,28 @@ error: err.message,
 
 
 app.post('/registerAdmin', async (req, res) => {
-  const { adminuser, adminpass } = req.body;
-    console.log("Received admin register:", adminuser, adminpass); // 👈 Debug log
+const { adminuser, adminpass } = req.body;
+console.log("Received admin register:", adminuser, adminpass); // 👈 Debug log
 
-  try {
-  const insertAdminQuery = `
-  INSERT INTO _admindashboard (adminuser, adminpass)
-  VALUES ($1, $2)
-  `;
-  await pool.query(insertAdminQuery, [adminuser, adminpass]); 
+try {
+const insertAdminQuery = `
+INSERT INTO _admindashboard (adminuser, adminpass)
+VALUES ($1, $2)
+`;
+await pool.query(insertAdminQuery, [adminuser, adminpass]); 
 
-    return res.status(200).json({
-      success: true,
-      message: "Admin registered successfully"
-    });
-  } catch (err) {
-    console.error("Error in /registerAdmin:", err);
-    return res.status(500).json({
-      success: false,
-      message: "Server error while registering admin"
-    });
-  }
-  
+return res.status(200).json({
+success: true,
+message: "Admin registered successfully"
+});
+} catch (err) {
+console.error("Error in /registerAdmin:", err);
+return res.status(500).json({
+success: false,
+message: "Server error while registering admin"
+});
+}
+
 });
 
 
@@ -1757,7 +1749,6 @@ console.log(`Server is running PORT on ${PORT}`);
 });
 
 
-
 setInterval(() => {
 axios
 .get("https://antara-gug4.onrender.com/ping")
@@ -1800,7 +1791,7 @@ return res.status(400).json({ error: "Invalid amount" });
 
 const options = {
 amount: amount * 100, // Amount in
-// paise (multiply by 100)
+//  (multiply by 100)
 currency: "INR",
 receipt: `receipt#${Date.now()}`, // Unique receipt ID
 payment_capture: 1, // Auto-capture payments
@@ -2338,7 +2329,6 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 // res.json({ products: results, total: results.length });
 // });
 // });
-
 
 
 app.post("/fetchCutomerOrder", async (req, res) => {

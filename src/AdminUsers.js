@@ -41,7 +41,6 @@ setRelativeDB_PRQuery((prevState) => !prevState);
 setDB_products_PRQuery((prevState) => !prevState);
 };
 
-
 const navigate = useNavigate();
 
 useEffect(() => {
@@ -56,6 +55,7 @@ navigate("/adminlogin");
 return (
 
 <div>
+
 <DashboardNav
 toggleSidebar={toggleSidebar}
 sidebarOpen={sidebarOpen}

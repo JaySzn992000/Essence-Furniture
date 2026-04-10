@@ -19,8 +19,8 @@ margin-bottom: 1.2em;
 }
 
 .faq-item {
-border-top: 0.5px solid gainsboro;
-border-bottom: 0.5px solid gainsboro;
+border-top: 0.5px solid #DCDCDC;
+border-bottom: 0.5px solid #DCDCDC;
 padding: 25px 0;
 }
 
@@ -48,7 +48,6 @@ text-align: start;
 color: #555;
 transition: 0.5s;
 }
-
 
 .faq-answer.open {
 max-height: 200px;   

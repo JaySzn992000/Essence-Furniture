@@ -1,6 +1,5 @@
 import Cart from "../components/Cart";
 
-
 const Ecart = () => {
 
 return (

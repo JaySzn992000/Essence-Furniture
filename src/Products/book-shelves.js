@@ -8,6 +8,7 @@ import axios from "axios";
 import "./Categoriesfruits.css";
 import Header from "../headers_footer/header";
 import { addToCart } from "../action/action";
+import Banner1 from '../Slider/Banner1.jpg'
 import FAqQuestions from "../components/FAqQuestions";
 
 
@@ -21,7 +22,7 @@ const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
 axios
-.get("http://localhost:3001/fetchProductslistTshirt")
+.get("https://antara-gug4.onrender.com/fetchbookshelves")
 .then((response) => {
 console.log("Fetched Mangoes Pickles products:", response.data); 
 setAllProducts(response.data); 
@@ -37,7 +38,7 @@ console.error("Error fetching Mangoes Pickles products:", error);
 useEffect(() => {
 if (query) {
 axios
-.get("http://localhost:3001/fetchProductslist", {
+.get("https://antara-gug4.onrender.com/fetchbookshelves", {
 params: { search: query },
 })
 .then((response) => {
@@ -136,7 +137,7 @@ return (
 
 <Navbar wishlistCount={wishlistCount} cartCount={cartCount} />
 
-<img className="ListBanner" src="https://www.kimirica.shop/cdn/shop/files/Valentine-Store-2025-Inner-Pages-BANNER-01.jpg?v=1768802129&width=1920"></img>
+<img className="ListBanner" src={Banner1}></img>
 
 <Filters allProducts={allProducts} onFilterUpdate={handleFilterUpdate} />
 

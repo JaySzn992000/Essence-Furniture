@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
@@ -64,7 +64,6 @@ return false;
 return true; 
 
 };
-
 
 const registerhanlder = (e) => {
 

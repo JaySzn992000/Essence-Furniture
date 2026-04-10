@@ -8,6 +8,7 @@ import axios from "axios";
 import "./Categoriesfruits.css";
 import Header from "../headers_footer/header";
 import { addToCart } from "../action/action";
+import Banner1 from '../Slider/Banner1.jpg'
 import FAqQuestions from "../components/FAqQuestions";
 
 
@@ -139,7 +140,7 @@ return (
 
 <Navbar wishlistCount={wishlistCount} cartCount={cartCount} />
 
-<img className="ListBanner" src="https://www.kimirica.shop/cdn/shop/files/Valentine-Store-2025-Inner-Pages-BANNER-01.jpg?v=1768802129&width=1920"></img>
+<img className="ListBanner" src={Banner1}></img>
 
 <Filters allProducts={allProducts} onFilterUpdate={handleFilterUpdate} />
 

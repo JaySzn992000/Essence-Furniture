@@ -66,7 +66,6 @@ Modern aesthetics meet ultimate comfort and functionality.
 
 );
 };
-
 const NextArrow = (props) => {
 const { onClick } = props;
 return (

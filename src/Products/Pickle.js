@@ -89,18 +89,18 @@ if (!product) return;
 
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
 const isProductInCart = cart.some(
-  (item) => String(item.id) === String(product.id)
+(item) => String(item.id) === String(product.id)
 );
 
 if (isProductInCart) {
-  alert("This product is already in your cart.");
+alert("This product is already in your cart.");
 } else {
-  addToCart(product);
-  const updatedCart = [...cart, product];
-  localStorage.setItem("cart", JSON.stringify(updatedCart));
+addToCart(product);
+const updatedCart = [...cart, product];
+localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-  setCartCount(updatedCart.length);
-  alert("Product added to cart!");
+setCartCount(updatedCart.length);
+alert("Product added to cart!");
 }
 };
 
@@ -173,12 +173,6 @@ onClick={() => handleAddToCart(product)}
 </div>
 </section>
 </div>
-
-{/* <div className="header_Filter">
-{showFilters && <Filterheader />}
-</div> */}
-
-{/* <Filterheader></Filterheader> */}
 
 </div>
 
