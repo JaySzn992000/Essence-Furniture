@@ -194,7 +194,7 @@ loading="lazy"
 
 <img
 id="Review_Img"
-src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"
+src="https://cdn-icons-png.flaticon.com/128/2658/2658473.png"
 />
 
 <li style={{ marginTop: ".5em", marginLeft: "-.2em" }}></li>
