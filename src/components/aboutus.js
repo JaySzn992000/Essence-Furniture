@@ -18,7 +18,7 @@ return (
 
 <img
 className="banner_img"
-src="https://www.kimirica.shop/cdn/shop/files/About-Us-Page-BANNER-01_1.jpg?v=1708598103&width=1800"
+src="https://furniturer.com/cdn/shop/files/8ce6e7dc9e462f95338d286fb06e08.png?v=1773653793&width=2000"
 alt="banner" />
 
 <div className="banner_content">
