@@ -25,7 +25,7 @@ const [selectedSize, setSelectedSize] = useState(null);
 useEffect(() => {
 const fetchProduct = async () => {
 try {
-const response = await axios.get("http://localhost:3001/fetchProductslist");
+const response = await axios.get("https://antara-gug4.onrender.com/fetchProductslist");
 const data = response.data;
 const product = data.find((product) => product.id === parseInt(id));
 setArrayStore(product);

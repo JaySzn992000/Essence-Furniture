@@ -27,7 +27,7 @@ useEffect(() => {
 const fetchProductData = async () => {
 try {
 const response = await axios.get(
-"https://naturalbuti.onrender.com/fetchProductslist"
+"https://antara-gug4.onrender.com/fetchProductslist"
 );
 setProductData(response.data);
 } catch (error) {
