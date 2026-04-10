@@ -325,7 +325,7 @@ app.get("/fetchcabinets", async (req, res) => {
 const query = `
 SELECT *
 FROM _imgproduct
-WHERE img ILIKE '%cabinets%'
+WHERE img ILIKE '%Cabinets%'
 `;
 
 try {
@@ -401,7 +401,25 @@ app.get("/fetchsofas", async (req, res) => {
 const query = `
 SELECT *
 FROM _imgproduct
-WHERE img ILIKE '%sofas%'
+WHERE img ILIKE '%Sofas%'
+`;
+
+try {
+const result = await pool.query(query);
+res.json(result.rows);
+} catch (err) {
+console.error("Error fetching data:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+
+});
+
+app.get("/fetchtables", async (req, res) => {
+
+const query = `
+SELECT *
+FROM _imgproduct
+WHERE img ILIKE '%Tables%'
 `;
 
 try {
@@ -493,7 +511,7 @@ app.get("/fetchbeds", async (req, res) => {
 const query = `
 SELECT *
 FROM _imgproduct
-WHERE img ILIKE '%beds%'
+WHERE img ILIKE '%Beds%'
 `;
 
 try {
