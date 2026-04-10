@@ -23,7 +23,7 @@ const [products, setProducts] = useState([]);
 useEffect(() => {
 
 axios
-.get("https://antara-gug4.onrender.com/fetchProductslist")
+.get("http://localhost:3001/fetchProductslist")
 .then((res) => setProducts(res.data))
 .catch((err) => console.error(err));
 }, []);
@@ -51,7 +51,7 @@ JSON.parse(localStorage.getItem("wishlistStatus")) || {};
 setWishlistStatus(storedWishlistStatus);
 
 axios
-.get("https://antara-gug4.onrender.com/fetchProductslist")
+.get("http://localhost:3001/fetchProductslist")
 .then((response) => {
 setArrayStore(response.data);
 setFilteredProducts(response.data);
@@ -68,7 +68,7 @@ const query = new URLSearchParams(location.search).get("search");
 useEffect(() => {
 if (query) {
 axios
-.get("https://antara-gug4.onrender.com/fetchProductslist", {
+.get("http://localhost:3001/fetchProductslist", {
 params: { search: query },
 })
 .then((response) => {
@@ -80,7 +80,7 @@ console.error("Error fetching products:", error);
 });
 } else {
 axios
-.get("https://antara-gug4.onrender.com/fetchProductslist")
+.get("http://localhost:3001/fetchProductslist")
 .then((response) => {
 setAllProducts(response.data);
 setFilteredProducts(response.data);
