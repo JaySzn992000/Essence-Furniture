@@ -71,7 +71,7 @@ Sign up for our newsletter and get 10% off your first purchase
 </div>
 
 <div className="footer_bottom">
-<p>© 2026 Json Softech. All Rights Reserved.</p>
+<p>© 2026 Designed & Developed by JSON Softech.</p>
 
 <div className="payments">
 
