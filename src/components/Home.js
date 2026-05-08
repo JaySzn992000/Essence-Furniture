@@ -15,7 +15,6 @@ import Featured from "./Featured";
 // import Iconicselection from "./Iconicselection";
 
 
-
 const Home = () => {
 
 const [showFilters, setShowFilters] = useState(false);

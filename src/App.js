@@ -67,6 +67,7 @@ import Jeans from "./Products/jeans";
 import Cabinets from "./Products/cabinets";
 import Bookshelves from "./Products/book-shelves";
 import Accessories from "./Products/accessories";
+import Allproducts from "./components/allproduct";
 
 
 function App () {

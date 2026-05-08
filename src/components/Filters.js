@@ -80,9 +80,8 @@ return (
 loading="lazy"
 onClick={ClickFilter}
 className="filter_"
-src="https://cdn-icons-png.flaticon.com/128/10609/10609382.png"
-alt=""
-></img>
+src="https://cdn-icons-png.flaticon.com/128/7094/7094575.png"
+alt=""></img>
 
 </div>
 
@@ -117,7 +116,7 @@ onChange={(e) => {
 setMinPrice(Number(e.target.value));
 handlePriceChange();
 }}
-style={{ width: "90%" }} />
+style={{ width: "100%" }} />
 
 <input
 type="range"
@@ -129,7 +128,7 @@ onChange={(e) => {
 setMaxPrice(Number(e.target.value));
 handlePriceChange();
 }}
-style={{ width: "90%" }} />
+style={{ width: "100%" }} />
 
 </div>
 

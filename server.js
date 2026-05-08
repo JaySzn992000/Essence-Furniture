@@ -826,7 +826,6 @@ res.status(500).json({ error: "Database query failed" });
 
 
 // fetchProductslist PostGreSQL 
-
 app.get("/fetchProductslist", async (req, res) => {
 const searchQuery = req.query.search || "";
 const keywords = searchQuery.toLowerCase().split(/\s+/);
