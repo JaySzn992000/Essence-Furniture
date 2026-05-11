@@ -1,10 +1,30 @@
 import { useNavigate } from "react-router";
 import LogoNitiArya from "../Logo/LogoNitiArya.png";
+import { useState } from "react";
 import "./header.css";
 
 const Header = () => {
 
 const navigate = useNavigate();
+
+const [email, setEmail] = useState("");
+const [subscribed, setSubscribed] = useState(false);
+const [error, setError] = useState("");
+
+const handleSubscribe = () => {
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if(emailPattern.test(email)){
+setSubscribed(true);
+setError("");
+}
+else{
+setSubscribed(false);
+setError("Please enter a valid email");
+}
+
+};
 
 return (
 
@@ -62,9 +82,29 @@ Sign up for our newsletter and get 10% off your first purchase
 </p>
 
 <div className="newsletter_box">
-<input type="text" placeholder="Enter your e-mail" />
-<button>➜</button>
+<input
+type="text"
+placeholder="Enter your e-mail"
+value={email}
+onChange={(e) => setEmail(e.target.value)}
+/>
+<button onClick={handleSubscribe}>
+<span> ➜</span>
+</button>
+
 </div>
+
+{subscribed && (
+<p style={{color:"#000", marginTop:"10px"}}>
+You have subscribed successfully !
+</p>
+)}
+
+{error && (
+<p style={{color:"#000", marginTop:"10px"}}>
+{error}
+</p>
+)}
 
 </div>
 

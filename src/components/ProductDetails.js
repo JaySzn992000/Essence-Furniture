@@ -161,7 +161,7 @@ loading="lazy"
 </h2>
 </section>
 
-<p>SELECT A SIZE</p>
+{/* <p>SELECT A SIZE</p>
 <div className="size_chart">
 {sizes.map((size) => (
 <button
@@ -173,12 +173,12 @@ className={selectedSize === size ? "selected" : ""}
 {size}
 </button>
 ))}
-</div>
+</div> */}
 
 <div className="review_Cntnr">
 <img
 id="Review_Img"
-src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"
+src="https://cdn-icons-png.flaticon.com/128/2658/2658473.png"
 />
 <li className="fa_Review">{arrayStore.review}</li>
 </div>

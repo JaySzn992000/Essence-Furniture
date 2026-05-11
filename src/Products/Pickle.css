@@ -18,14 +18,14 @@ margin-bottom: 1rem;
 display: flex;
 justify-content: center;
 flex-wrap: wrap;
-gap: 2em;
+gap: 1em;
 }
 
 .single_product_card {
 position: relative;
 height: auto;
 margin-bottom: 0em;
-max-width: 237px;
+max-width: 283px;
 padding: 0em;
 padding-bottom: 37px;
 text-align: center;
