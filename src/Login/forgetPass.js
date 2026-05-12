@@ -116,7 +116,7 @@ headers: {
 },
 body: JSON.stringify({
 email: formdata.email,
-password: formdata.password,
+newPassword: formdata.password,
 }),
 });
 

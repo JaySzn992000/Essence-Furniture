@@ -189,10 +189,10 @@ loading="lazy"
 <li className="fa_Price">{productlist.price}</li>
 </div>
 
-<div className="review_Cntnr">
+<div className="review_CtrAllPrdcts">
 
 <img
-id="Review_Img"
+id="Review_ImgPrdcts"
 src="https://cdn-icons-png.flaticon.com/128/2658/2658473.png"
 />
 

@@ -39,10 +39,10 @@ margin-bottom: -0.5em;
 .flex_productlist .padding_contain {
 width: 100%;
 padding: 11px;
-margin: .5em 0em 0.3em 0em;
+margin: 1.1em 0em 0.3em 0em;
 }
 
-.review_Cntnr {
+.review_CtrAllPrdcts {
 display: flex;
 justify-content: flex-start;
 align-items: center;
@@ -52,18 +52,18 @@ margin-top: -.2em;
 margin-left: -.6em;
 }
 
-.review_Cntnr .fa_Review{
-margin-top: .2em;
+.review_CtrAllPrdcts .fa_Review{
+margin-top: .3em;
 margin-left: .3em;
 }
 
-.padding_contain #Review_Img {
+.padding_contain #Review_ImgPrdcts {
 width: 31px;
 padding: 6px;
 margin-top: -.4em;
 }
 
-.review_Cntnr .fa_Review {
+.review_CtrAllPrdcts .fa_Review {
 color: #464545;
 }
 
@@ -173,7 +173,7 @@ border: .5px solid #231F20;
 
 @media (max-width: 768px) {
 
-.review_Cntnr {
+.review_CtrAllPrdcts {
 justify-content: flex-start !important;
 margin-left: 0;
 }
@@ -237,7 +237,7 @@ margin-right: .7em;
 margin-top: .7em;
 }
 
-.padding_contain #Review_Img {
+.padding_contain #Review_ImgPrdcts {
 width: 21px;
 padding: 2px;
 margin-right: .3em;

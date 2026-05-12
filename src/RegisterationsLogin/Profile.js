@@ -52,9 +52,7 @@ return (
 <div className="n_profile">
 
 {loggedInUser && loggedInUser.name && (
-
 <>
-
 <div className="edit_flex">
 
 <div>

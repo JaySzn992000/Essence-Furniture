@@ -41,29 +41,32 @@ setSelectedSize(size);
 };
 
 const handleAddToCart = () => {
-if (!selectedSize) {
-alert("Please select size");
-return;
-}
 
 if (arrayStore) {
+
 const isProductInCart = cart.some(
-(item) => item.id === arrayStore.id && item.size === selectedSize
+(item) => item.id === arrayStore.id
 );
 
 if (isProductInCart) {
-alert("This product with the selected size is already in your cart.");
+alert("Product already in cart.");
 } else {
+
 const productToAdd = {
 ...arrayStore,
-size: selectedSize,
 price: arrayStore.price,
 originalPrice: arrayStore.price
 };
 
 addToCart(productToAdd);
+
 setCartCount(cartCount + 1);
-localStorage.setItem(`cart-added-${id}-${selectedSize}`, JSON.stringify(true));
+
+localStorage.setItem(
+`cart-added-${id}`,
+JSON.stringify(true)
+);
+
 alert("Product added to cart!");
 }
 }
@@ -161,20 +164,6 @@ loading="lazy"
 </h2>
 </section>
 
-{/* <p>SELECT A SIZE</p>
-<div className="size_chart">
-{sizes.map((size) => (
-<button
-key={size}
-id="btnsize"
-onClick={() => handleSizeChange(size)}
-className={selectedSize === size ? "selected" : ""}
->
-{size}
-</button>
-))}
-</div> */}
-
 <div className="review_Cntnr">
 <img
 id="Review_Img"
@@ -213,7 +202,9 @@ GO TO CART
 </div>
 
 <Header />
+
 </div>
+
 );
 };
 
