@@ -9,7 +9,7 @@ import axios from "axios";
 import "./ProductListmodule.css";
 import Header from "../headers_footer/header";
 
-const Allproducts = ({ addToCart}) => {
+const Allproducts = ({ addToCart, filter}) => {
 
 const [filteredProducts, setFilteredProducts] = useState([]);
 const [allProducts, setAllProducts] = useState([]);
@@ -91,6 +91,31 @@ console.error("Error fetching all products:", error);
 }, [query] );
 
 
+useEffect(() => {
+
+if (!allProducts.length) return;
+
+let updatedProducts = [...allProducts];
+
+if (filter.selectedNames?.length > 0) {
+
+updatedProducts = updatedProducts.filter((product) =>
+filter.selectedNames.includes(product.category)
+);
+
+}
+
+updatedProducts = updatedProducts.filter(
+(product) =>
+product.price >= filter.minPrice &&
+product.price <= filter.maxPrice
+);
+
+setFilteredProducts(updatedProducts);
+
+}, [filter, allProducts]);
+
+
 const sendToWishlist = (product) => {
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 const productIndex = wishlist.findIndex((item) => item.id === product.id);
@@ -109,9 +134,6 @@ setWishlistStatus({
 ...wishlistStatus,
 [product.id]: !wishlistStatus[product.id],
 } );
-
-// Update 
-// wishlist count
 
 setWishlistCount(wishlist.length);
 
@@ -193,8 +215,7 @@ loading="lazy"
 
 <img
 id="Review_ImgPrdcts"
-src="https://cdn-icons-png.flaticon.com/128/2658/2658473.png"
-/>
+src="https://cdn-icons-png.flaticon.com/128/2658/2658473.png"/>
 
 <li style={{ marginTop: ".5em", marginLeft: "-.2em" }}></li>
 <li className="fa_Review">{productlist.review}</li>
@@ -206,7 +227,9 @@ src="https://cdn-icons-png.flaticon.com/128/2658/2658473.png"
 </div>
 
 </div>
+
 ))}
+
 </div>
 
 </div>

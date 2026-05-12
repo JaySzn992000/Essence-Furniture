@@ -24,7 +24,7 @@ const [selectedSize, setSelectedSize] = useState(null);
 useEffect(() => {
 const fetchProduct = async () => {
 try {
-const response = await axios.get("https://antara-gug4.onrender.com/fetchProductslist");
+const response = await axios.get("http://localhost:3001/fetchProductslist");
 const data = response.data;
 const product = data.find((product) => product.id === parseInt(id));
 setArrayStore(product);
@@ -178,8 +178,7 @@ src="https://cdn-icons-png.flaticon.com/128/2658/2658473.png"
 className="iconDetails Cart_detail"
 src="https://cdn-icons-png.flaticon.com/128/6322/6322610.png"
 alt=""
-loading="lazy"
-/>
+loading="lazy"/>
 <span>ADD TO CART</span>
 </button>
 

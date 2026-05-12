@@ -11,7 +11,7 @@ import { addToCart } from "../action/action";
 import Banner1 from '../Slider/Banner1.jpg'
 import FAqQuestions from "../components/FAqQuestions";
 
-const Sofas = ({ showFilters = true, limit, addToCart }) => {
+const Sofas = ({ showFilters = true, limit, addToCart, filter }) => {
 
 const [allProducts, setAllProducts] = useState([]); 
 const [filteredProducts, setFilteredProducts] = useState([]);
@@ -54,10 +54,29 @@ setFilteredProducts(allProducts);
 }
 }, [query, allProducts]);
 
+useEffect(() => {
 
-const handleFilterUpdate = (filteredData) => {
-setFilteredProducts(filteredData);
-};
+if (!allProducts.length) return;
+
+let updatedProducts = [...allProducts];
+
+if (filter.selectedNames?.length > 0) {
+
+updatedProducts = updatedProducts.filter((product) =>
+filter.selectedNames.includes(product.category)
+);
+
+}
+
+updatedProducts = updatedProducts.filter(
+(product) =>
+product.price >= filter.minPrice &&
+product.price <= filter.maxPrice
+);
+
+setFilteredProducts(updatedProducts);
+
+}, [filter, allProducts]);
 
 const limitedProducts = filteredProducts.slice(0, limit);
 

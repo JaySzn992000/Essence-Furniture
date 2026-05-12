@@ -19,29 +19,14 @@ const location = useLocation();
 const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
-let filtered = allProducts;
 
-if (selectedNames.length > 0) {
-filtered = filtered.filter((product) =>
-selectedNames.includes(product.category)
-);
-}
-
-if (isPriceChanged) {
-filtered = filtered.filter(
-(product) => product.price >= minPrice && product.price <= maxPrice
-);
-}
-
-onFilterUpdate(filtered);
-}, [
+onFilterUpdate({
+selectedNames,
 minPrice,
 maxPrice,
-isPriceChanged,
-selectedNames,
-allProducts,
-]);
+});
 
+}, [selectedNames, minPrice, maxPrice]);
 
 const handlePriceChange = () => setIsPriceChanged(true);
 
@@ -67,7 +52,6 @@ return newNames;
 const ClickFilter = () => setfilters_div(true);
 const FilterClose = () => setfilters_div(false);
 
-
 return (
 
 <div>
@@ -92,8 +76,7 @@ loading="lazy"
 alt=""
 src={NavigationClose}
 id="Product_CloseTag"
-onClick={FilterClose}
-></img>
+onClick={FilterClose}></img>
 
 <div>
 
@@ -102,8 +85,11 @@ onClick={FilterClose}
 <h4 id="priceRange">SORT BY</h4>
 
 <li className="maxMin">
+
 {" "}
+
 ₹ {minPrice} - ₹{maxPrice}
+
 </li>
 
 <input
@@ -148,8 +134,7 @@ id="chck_box"
 type="checkbox"
 value={name}
 checked={selectedNames.includes(name)}
-onChange={() => handleNameChange(name)}
-/>
+onChange={() => handleNameChange(name)} />
 
 <div
 style={{

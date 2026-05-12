@@ -12,13 +12,12 @@ import { addToCart } from "../action/action";
 import FAqQuestions from "../components/FAqQuestions";
 
 
-const Cabinetsfetch = ({ showFilters = true, limit, addToCart }) => {
+const Cabinetsfetch = ({ showFilters = true, limit, addToCart, filter }) => {
 
 const [allProducts, setAllProducts] = useState([]); 
 const [filteredProducts, setFilteredProducts] = useState([]);
 const location = useLocation();
 const query = new URLSearchParams(location.search).get("search"); 
-
 
 useEffect(() => {
 axios
@@ -56,9 +55,29 @@ setFilteredProducts(allProducts);
 }
 }, [query, allProducts]);
 
-const handleFilterUpdate = (filteredData) => {
-setFilteredProducts(filteredData);
-};
+useEffect(() => {
+
+if (!allProducts.length) return;
+
+let updatedProducts = [...allProducts];
+
+if (filter.selectedNames?.length > 0) {
+
+updatedProducts = updatedProducts.filter((product) =>
+filter.selectedNames.includes(product.category)
+);
+
+}
+
+updatedProducts = updatedProducts.filter(
+(product) =>
+product.price >= filter.minPrice &&
+product.price <= filter.maxPrice
+);
+
+setFilteredProducts(updatedProducts);
+
+}, [filter, allProducts]);
 
 const limitedProducts = filteredProducts.slice(0, limit);
 
@@ -186,7 +205,7 @@ loading="lazy"
 
 <img
 id="Review_ImgPrdcts"
-src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png" />
+src="https://cdn-icons-png.flaticon.com/128/2658/2658473.png" />
 
 <li style={{ marginTop: ".5em", marginLeft: "-.2em" }}></li>
 <li className="fa_Review">{productlist.review}</li>

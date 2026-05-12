@@ -14,12 +14,11 @@ const Flexproducts = ({ type }) => {
 
 const [allProducts, setAllProducts] = useState([]);
 
-const [filter, setFilter] = useState({  
-search: "",
-price: 1000,
+const [filter, setFilter] = useState({
+selectedNames: [],
+minPrice: 0,
+maxPrice: 10000,
 });
-
-// ✅ filter update handler
 
 const handleFilterUpdate = (newFilter) => {
 setFilter((prev) => ({
@@ -43,10 +42,11 @@ return (
 <div className="main_layout">
 
 <section className="filter_absolute">
+
 <Filters 
 allProducts={allProducts} 
-onFilterUpdate={handleFilterUpdate} 
-/>
+onFilterUpdate={handleFilterUpdate} />
+
 </section>
 
 <div className="products_wrapper">
@@ -58,7 +58,6 @@ allProducts={allProducts}/>
 </div>
 
 </div>
-
 
 )}
 
@@ -88,7 +87,6 @@ allProducts={allProducts}/>
 </div>
 
 </div>
-
 
 )}
 
@@ -176,7 +174,6 @@ allProducts={allProducts}/>
 </div>
 
 </div>
-
 
 )}
 
