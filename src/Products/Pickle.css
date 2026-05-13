@@ -9,7 +9,6 @@ display: flex;
 justify-content: flex-start;
 align-items: center;
 gap: .2em;
-margin-top: .7em;
 }
 
 #Review_Image {
@@ -143,6 +142,7 @@ color: #222;
 
 .reviewContainer {
 justify-content: flex-start !important;
+margin-top: .7em;
 }
 
 #Review_Image {
