@@ -17,7 +17,7 @@ const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
 axios
-.get("https://essence-furniture.vercel.app/fetchProductslist")
+.get("https://antara-gug4.onrender.com/fetchProductslist")
 .then((response) => {
 setAllProducts(response.data);
 setFilteredProducts(limit ? response.data.slice(0, limit) : response.data);
@@ -30,7 +30,7 @@ console.error("Error fetching products:", error);
 useEffect(() => {
 if (query) {
 axios
-.get("https://essence-furniture.vercel.app/fetchProductslist", {
+.get("https://antara-gug4.onrender.com/fetchProductslist", {
 params: { search: query },
 })
 .then((response) => {
@@ -137,7 +137,6 @@ className="product_image"
 </Link>
 
 <div className="product_info_container">
-
 <div className="info_inner">
 <Link to={`/product/${product.id}`}>
 <li className="product_title">{product.name}</li>
