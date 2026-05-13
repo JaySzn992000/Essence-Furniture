@@ -17,7 +17,7 @@ const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
 axios
-.get("https://antara-gug4.onrender.com/fetchProductslist")
+.get("https://essence-furniture.vercel.app/fetchProductslist")
 .then((response) => {
 setAllProducts(response.data);
 setFilteredProducts(limit ? response.data.slice(0, limit) : response.data);
@@ -30,7 +30,7 @@ console.error("Error fetching products:", error);
 useEffect(() => {
 if (query) {
 axios
-.get("https://antara-gug4.onrender.com/fetchProductslist", {
+.get("https://essence-furniture.vercel.app/fetchProductslist", {
 params: { search: query },
 })
 .then((response) => {
@@ -137,6 +137,7 @@ className="product_image"
 </Link>
 
 <div className="product_info_container">
+
 <div className="info_inner">
 <Link to={`/product/${product.id}`}>
 <li className="product_title">{product.name}</li>
@@ -145,20 +146,14 @@ className="product_image"
 <div className="price_section">
 <li className="fa fa-inr price_icon"></li>
 <li className="product_price">{product.price}</li>
+</div>
 
 <div className="reviewContainer">
-
 <img
 id="Review_Image"
 src="https://cdn-icons-png.flaticon.com/128/2658/2658473.png"/>
-
-{/* <li style={{ marginTop: ".5em", marginLeft: "-.2em" }}></li> */}
 <li className="fa_Review">{product.review}</li>
-
 </div>
-
-</div>
-
 
 </div>
 </div>

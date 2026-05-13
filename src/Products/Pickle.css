@@ -9,13 +9,12 @@ display: flex;
 justify-content: flex-start;
 align-items: center;
 gap: .2em;
-margin: 0.4em auto 0;
+margin-top: .7em;
 }
 
 #Review_Image {
 width: 31px;
 padding: 6px;
-margin-top: -.1em;
 }
 
 .product_grid_container {
@@ -84,6 +83,7 @@ object-fit: cover;
 
 .product_info_container {
 padding-top: 0.7em;
+padding: 7px;
 text-align: start;
 }
 
@@ -101,7 +101,6 @@ justify-content: center;
 align-items: flex-start;
 text-align: start;
 gap: 0.5em;
-margin-left: -1.5em;
 width: fit-content;
 max-width: 107px;
 height: 34px;
