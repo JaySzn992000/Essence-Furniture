@@ -8,7 +8,7 @@ const Filters = ({ allProducts, onFilterUpdate }) => {
 const [selectedNames, setSelectedNames] = useState([]);
 
 const [minPrice, setMinPrice] = useState(0);
-const [maxPrice, setMaxPrice] = useState(10000);
+const [maxPrice, setMaxPrice] = useState(100000);
 const [isPriceChanged, setIsPriceChanged] = useState(false);
 
 const [filters_div, setfilters_div] = useState(false);
@@ -95,7 +95,7 @@ onClick={FilterClose}></img>
 <input
 type="range"
 min="0"
-max="10000"
+max="100000"
 step="10"
 value={minPrice}
 onChange={(e) => {
@@ -107,7 +107,7 @@ style={{ width: "100%" }} />
 <input
 type="range"
 min="0"
-max="10000"
+max="100000"
 step="10"
 value={maxPrice}
 onChange={(e) => {

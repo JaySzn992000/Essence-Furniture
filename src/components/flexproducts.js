@@ -17,7 +17,7 @@ const [allProducts, setAllProducts] = useState([]);
 const [filter, setFilter] = useState({
 selectedNames: [],
 minPrice: 0,
-maxPrice: 10000,
+maxPrice: 100000,
 });
 
 const handleFilterUpdate = (newFilter) => {
