@@ -118,6 +118,7 @@ cursor: pointer;
 
 .fa-heart_products.wishlist-active {
 color: #000 !important;
+background-color: transparent !important;
 }
 
 .add_crt {
