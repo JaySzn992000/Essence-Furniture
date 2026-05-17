@@ -19,41 +19,10 @@ const [cartCount, setCartCount] = useState(0);
 const [arrayStore, setArrayStore] = useState([]);
 const [products, setProducts] = useState([]);
 
-
-useEffect(() => {
-
-const updateWishlistStatus = () => {
-
-const wishlist =
-JSON.parse(localStorage.getItem("wishlist")) || [];
-
-const updatedStatus = {};
-
-wishlist.forEach((item) => {
-updatedStatus[item.id] = true;
-});
-
-setWishlistStatus(updatedStatus);
-
-};
-
-updateWishlistStatus();
-
-window.addEventListener("wishlistUpdated", updateWishlistStatus);
-
-return () => {
-window.removeEventListener(
-"wishlistUpdated",
-updateWishlistStatus
-);
-};
-
-}, []);
-
 useEffect(() => {
 
 axios
-.get("http://localhost:3001/fetchProductslist")
+.get("https://antara-gug4.onrender.com/fetchProductslist")
 .then((res) => setProducts(res.data))
 .catch((err) => console.error(err));
 }, []);
@@ -81,7 +50,7 @@ JSON.parse(localStorage.getItem("wishlistStatus")) || {};
 setWishlistStatus(storedWishlistStatus);
 
 axios
-.get("http://localhost:3001/fetchProductslist")
+.get("https://antara-gug4.onrender.com/fetchProductslist")
 .then((response) => {
 setArrayStore(response.data);
 setFilteredProducts(response.data);
@@ -98,7 +67,7 @@ const query = new URLSearchParams(location.search).get("search");
 useEffect(() => {
 if (query) {
 axios
-.get("http://localhost:3001/fetchProductslist", {
+.get("https://antara-gug4.onrender.com/fetchProductslist", {
 params: { search: query },
 })
 .then((response) => {
@@ -110,7 +79,7 @@ console.error("Error fetching products:", error);
 });
 } else {
 axios
-.get("http://localhost:3001/fetchProductslist")
+.get("https://antara-gug4.onrender.com/fetchProductslist")
 .then((response) => {
 setAllProducts(response.data);
 setFilteredProducts(response.data);
@@ -128,13 +97,10 @@ if (!allProducts.length) return;
 
 let updatedProducts = [...allProducts];
 
-if (filter?.selectedNames?.length > 0) {
+if (filter.selectedNames?.length > 0) {
 
 updatedProducts = updatedProducts.filter((product) =>
-filter.selectedNames.some(
-(name) =>
-product.img?.toLowerCase().includes(name.toLowerCase())
-)
+filter.selectedNames.includes(product.category)
 );
 
 }
@@ -162,7 +128,7 @@ wishlist.splice(productIndex, 1);
 
 
 localStorage.setItem("wishlist", JSON.stringify(wishlist));
-window.dispatchEvent(new Event("wishlistUpdated"));
+window.dispatchEvent(new Event("storage"));
 
 setWishlistStatus({
 ...wishlistStatus,
