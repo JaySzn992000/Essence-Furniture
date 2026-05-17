@@ -45,22 +45,30 @@ alert("Product added to cart!");
 };
 
 useEffect(() => {
-const storedWishlistStatus =
-JSON.parse(localStorage.getItem("wishlistStatus")) || {};
-setWishlistStatus(storedWishlistStatus);
+const updateWishlist = () => {
 
-axios
-.get("https://antara-gug4.onrender.com/fetchProductslist")
-.then((response) => {
-setArrayStore(response.data);
-setFilteredProducts(response.data);
-})
+const wishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
 
-.catch((error) => {
-console.error("Error fetching data:", error);
+const statusObj = {};
+
+wishlist.forEach((item) => {
+statusObj[item.id] = true;
 });
-}, [] );
 
+setWishlistStatus(statusObj);
+
+};
+
+updateWishlist();
+
+window.addEventListener("wishlistUpdated", updateWishlist);
+
+return () => {
+window.removeEventListener("wishlistUpdated", updateWishlist);
+};
+
+}, [] );
 
 const location = useLocation();
 const query = new URLSearchParams(location.search).get("search");
@@ -90,17 +98,19 @@ console.error("Error fetching all products:", error);
 }
 }, [query] );
 
-
 useEffect(() => {
 
 if (!allProducts.length) return;
 
 let updatedProducts = [...allProducts];
 
-if (filter.selectedNames?.length > 0) {
+if (filter?.selectedNames?.length > 0) {
 
 updatedProducts = updatedProducts.filter((product) =>
-filter.selectedNames.includes(product.category)
+filter.selectedNames.some(
+(name) =>
+product.img?.toLowerCase().includes(name.toLowerCase())
+)
 );
 
 }
@@ -115,37 +125,36 @@ setFilteredProducts(updatedProducts);
 
 }, [filter, allProducts]);
 
-
 const sendToWishlist = (product) => {
-let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-const productIndex = wishlist.findIndex((item) => item.id === product.id);
 
-if (productIndex === -1) {
-wishlist.push(product);
+let wishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
+
+const exists = wishlist.find(
+(item) => item.id === product.id
+);
+
+if (exists) {
+
+wishlist = wishlist.filter(
+(item) => item.id !== product.id
+);
+
 } else {
-wishlist.splice(productIndex, 1);
+
+wishlist.push(product);
+
 }
 
-
-localStorage.setItem("wishlist", JSON.stringify(wishlist));
-window.dispatchEvent(new Event("storage"));
-
-setWishlistStatus({
-...wishlistStatus,
-[product.id]: !wishlistStatus[product.id],
-} );
-
-setWishlistCount(wishlist.length);
-
-const updatedWishlistStatus = {
-...wishlistStatus,
-[product.id]: !wishlistStatus[product.id],
-};
 localStorage.setItem(
-"wishlistStatus",
-JSON.stringify(updatedWishlistStatus)
+"wishlist",
+JSON.stringify(wishlist)
 );
-setWishlistStatus(updatedWishlistStatus);
+
+window.dispatchEvent(
+new Event("wishlistUpdated")
+);
+
 };
 
 const handleFilterUpdate = (filtered) => {
