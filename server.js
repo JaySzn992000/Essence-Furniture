@@ -16,7 +16,6 @@ const pool = require("./config");
 app.use(cors({
 
 origin: [
-'http://localhost:3000',
 'https://essence-furniture.vercel.app',
 ],
 
