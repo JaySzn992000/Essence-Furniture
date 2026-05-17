@@ -14,7 +14,7 @@ const Allproducts = ({ addToCart, filter}) => {
 const [filteredProducts, setFilteredProducts] = useState([]);
 const [allProducts, setAllProducts] = useState([]);
 const [wishlistCount, setWishlistCount] = useState(0);
-const [wishlist, setWishlist] = useState([]);
+const [wishlistStatus, setWishlistStatus] = useState({});
 const [cartCount, setCartCount] = useState(0);
 const [arrayStore, setArrayStore] = useState([]);
 const [products, setProducts] = useState([]);
@@ -44,21 +44,23 @@ alert("Product added to cart!");
 }
 };
 
-
 useEffect(() => {
-const syncWishlist = () => {
-const data = JSON.parse(localStorage.getItem("wishlist")) || [];
-setWishlist(data);
-};
+const storedWishlistStatus =
+JSON.parse(localStorage.getItem("wishlistStatus")) || {};
+setWishlistStatus(storedWishlistStatus);
 
-syncWishlist();
+axios
+.get("https://antara-gug4.onrender.com/fetchProductslist")
+.then((response) => {
+setArrayStore(response.data);
+setFilteredProducts(response.data);
+})
 
-window.addEventListener("wishlistUpdated", syncWishlist);
+.catch((error) => {
+console.error("Error fetching data:", error);
+});
+}, [] );
 
-return () => {
-window.removeEventListener("wishlistUpdated", syncWishlist);
-};
-}, []);
 
 const location = useLocation();
 const query = new URLSearchParams(location.search).get("search");
@@ -88,6 +90,7 @@ console.error("Error fetching all products:", error);
 }
 }, [query] );
 
+
 useEffect(() => {
 
 if (!allProducts.length) return;
@@ -115,40 +118,38 @@ setFilteredProducts(updatedProducts);
 
 }, [filter, allProducts]);
 
-const updateWishlistCount = () => {
-const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-setWishlistCount(wishlist.length);
-window.dispatchEvent(new Event("wishlistUpdated"));
-};
 
 const sendToWishlist = (product) => {
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-const exists = wishlist.find((item) => item.id === product.id);
+const productIndex = wishlist.findIndex((item) => item.id === product.id);
 
-if (exists) {
-wishlist = wishlist.filter((item) => item.id !== product.id);
-} else {
+if (productIndex === -1) {
 wishlist.push(product);
+} else {
+wishlist.splice(productIndex, 1);
 }
 
+
 localStorage.setItem("wishlist", JSON.stringify(wishlist));
-setWishlist(wishlist);
-updateWishlistCount(); 
+window.dispatchEvent(new Event("storage"));
 
+setWishlistStatus({
+...wishlistStatus,
+[product.id]: !wishlistStatus[product.id],
+} );
+
+setWishlistCount(wishlist.length);
+
+const updatedWishlistStatus = {
+...wishlistStatus,
+[product.id]: !wishlistStatus[product.id],
 };
-
-useEffect(() => {
-const sync = () => {
-const data = JSON.parse(localStorage.getItem("wishlist")) || [];
-setWishlist(data);
+localStorage.setItem(
+"wishlistStatus",
+JSON.stringify(updatedWishlistStatus)
+);
+setWishlistStatus(updatedWishlistStatus);
 };
-
-window.addEventListener("storage", sync);
-
-return () => {
-window.removeEventListener("storage", sync);
-};
-}, []);
 
 const handleFilterUpdate = (filtered) => {
 setFilteredProducts(filtered);
@@ -160,7 +161,6 @@ return text
 .replace(/[^a-z0-9]+/g, '-')   
 .replace(/(^-|-$)/g, '');      
 };
-
 
 
 return (
@@ -187,7 +187,7 @@ return (
 <i
 onClick={() => sendToWishlist(productlist)}
 className={`fa fa-heart fa-heart_products ${
-wishlist.some((item) => item.id === productlist.id) ? "wishlist-active" : ""
+wishlistStatus[productlist.id] ? "wishlist-active" : ""
 }`}
 >
 {" "}

@@ -16,21 +16,11 @@ setWishlist(storedWishlist);
 }, [] );
 
 const handleRemove = (index) => {
-
-const newWishlist =
-wishlist.filter((_, i) => i !== index);
-
+const newWishlist = wishlist.filter((_, i) => i !== index);
 setWishlist(newWishlist);
+localStorage.setItem("wishlist", JSON.stringify(newWishlist));
 
-localStorage.setItem(
-"wishlist",
-JSON.stringify(newWishlist)
-);
-
-window.dispatchEvent(
-new Event("wishlistUpdated")
-);
-
+window.dispatchEvent(new Event("wishlistUpdated"));
 };
 
 useEffect(() => {
