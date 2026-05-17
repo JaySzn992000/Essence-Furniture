@@ -14,7 +14,7 @@ const Allproducts = ({ addToCart, filter}) => {
 const [filteredProducts, setFilteredProducts] = useState([]);
 const [allProducts, setAllProducts] = useState([]);
 const [wishlistCount, setWishlistCount] = useState(0);
-const [wishlistStatus, setWishlistStatus] = useState({});
+const [wishlist, setWishlist] = useState([]);
 const [cartCount, setCartCount] = useState(0);
 const [arrayStore, setArrayStore] = useState([]);
 const [products, setProducts] = useState([]);
@@ -56,8 +56,6 @@ wishlist.forEach((item) => {
 statusObj[item.id] = true;
 });
 
-setWishlistStatus(statusObj);
-
 };
 
 updateWishlist();
@@ -69,6 +67,21 @@ window.removeEventListener("wishlistUpdated", updateWishlist);
 };
 
 }, [] );
+
+useEffect(() => {
+const syncWishlist = () => {
+const data = JSON.parse(localStorage.getItem("wishlist")) || [];
+setWishlist(data);
+};
+
+syncWishlist();
+
+window.addEventListener("wishlistUpdated", syncWishlist);
+
+return () => {
+window.removeEventListener("wishlistUpdated", syncWishlist);
+};
+}, []);
 
 const location = useLocation();
 const query = new URLSearchParams(location.search).get("search");
@@ -193,7 +206,7 @@ return (
 <i
 onClick={() => sendToWishlist(productlist)}
 className={`fa fa-heart fa-heart_products ${
-wishlistStatus[productlist.id] ? "wishlist-active" : ""
+wishlist.some((item) => item.id === productlist.id) ? "wishlist-active" : ""
 }`}
 >
 {" "}
