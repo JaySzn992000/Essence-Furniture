@@ -44,20 +44,6 @@ alert("Product added to cart!");
 }
 };
 
-useEffect(() => {
-const syncWishlist = () => {
-const data = JSON.parse(localStorage.getItem("wishlist")) || [];
-setWishlist(data);
-};
-
-syncWishlist();
-
-window.addEventListener("wishlistUpdated", syncWishlist);
-
-return () => {
-window.removeEventListener("wishlistUpdated", syncWishlist);
-};
-}, []);
 
 useEffect(() => {
 const syncWishlist = () => {
@@ -129,37 +115,40 @@ setFilteredProducts(updatedProducts);
 
 }, [filter, allProducts]);
 
+const updateWishlistCount = () => {
+const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+setWishlistCount(wishlist.length);
+window.dispatchEvent(new Event("wishlistUpdated"));
+};
+
 const sendToWishlist = (product) => {
-
-let wishlist =
-JSON.parse(localStorage.getItem("wishlist")) || [];
-
-const exists = wishlist.find(
-(item) => item.id === product.id
-);
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+const exists = wishlist.find((item) => item.id === product.id);
 
 if (exists) {
-
-wishlist = wishlist.filter(
-(item) => item.id !== product.id
-);
-
+wishlist = wishlist.filter((item) => item.id !== product.id);
 } else {
-
 wishlist.push(product);
-
 }
 
-localStorage.setItem(
-"wishlist",
-JSON.stringify(wishlist)
-);
-
-window.dispatchEvent(
-new Event("wishlistUpdated")
-);
+localStorage.setItem("wishlist", JSON.stringify(wishlist));
+setWishlist(wishlist);
+updateWishlistCount(); 
 
 };
+
+useEffect(() => {
+const sync = () => {
+const data = JSON.parse(localStorage.getItem("wishlist")) || [];
+setWishlist(data);
+};
+
+window.addEventListener("storage", sync);
+
+return () => {
+window.removeEventListener("storage", sync);
+};
+}, []);
 
 const handleFilterUpdate = (filtered) => {
 setFilteredProducts(filtered);
@@ -171,6 +160,7 @@ return text
 .replace(/[^a-z0-9]+/g, '-')   
 .replace(/(^-|-$)/g, '');      
 };
+
 
 
 return (
