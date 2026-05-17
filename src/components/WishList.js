@@ -17,9 +17,12 @@ setWishlist(storedWishlist);
 
 const handleRemove = (index) => {
 const newWishlist = wishlist.filter((_, i) => i !== index);
+
 setWishlist(newWishlist);
+
 localStorage.setItem("wishlist", JSON.stringify(newWishlist));
 
+window.dispatchEvent(new Event("storage"));
 window.dispatchEvent(new Event("wishlistUpdated"));
 };
 
@@ -69,7 +72,7 @@ return (
 <ul>
 {wishlist.map((item, index) => (
 <li
-key={index}
+key={item.id}
 style={{ listStyle: "none" }}
 className="wishlist_item"
 >
