@@ -11,25 +11,9 @@ const [wishlist, setWishlist] = useState([]);
 const [productData, setProductData] = useState([]);
 
 useEffect(() => {
-
-const syncWishlist = () => {
-const storedWishlist =
-JSON.parse(localStorage.getItem("wishlist")) || [];
-
+const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 setWishlist(storedWishlist);
-};
-
-syncWishlist();
-
-window.addEventListener("wishlistUpdated", syncWishlist);
-window.addEventListener("storage", syncWishlist);
-
-return () => {
-window.removeEventListener("wishlistUpdated", syncWishlist);
-window.removeEventListener("storage", syncWishlist);
-};
-
-}, []);
+}, [] );
 
 const handleRemove = (index) => {
 const newWishlist = wishlist.filter((_, i) => i !== index);
