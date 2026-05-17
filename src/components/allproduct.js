@@ -118,6 +118,30 @@ setFilteredProducts(updatedProducts);
 
 }, [filter, allProducts]);
 
+useEffect(() => {
+const syncWishlist = () => {
+const storedWishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
+
+const updatedStatus = {};
+
+storedWishlist.forEach((item) => {
+updatedStatus[item.id] = true;
+});
+
+setWishlistStatus(updatedStatus);
+};
+
+syncWishlist();
+
+window.addEventListener("wishlistUpdated", syncWishlist);
+window.addEventListener("storage", syncWishlist);
+
+return () => {
+window.removeEventListener("wishlistUpdated", syncWishlist);
+window.removeEventListener("storage", syncWishlist);
+};
+}, [] );
 
 const sendToWishlist = (product) => {
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
