@@ -45,28 +45,19 @@ alert("Product added to cart!");
 };
 
 useEffect(() => {
-const updateWishlist = () => {
-
-const wishlist =
-JSON.parse(localStorage.getItem("wishlist")) || [];
-
-const statusObj = {};
-
-wishlist.forEach((item) => {
-statusObj[item.id] = true;
-});
-
+const syncWishlist = () => {
+const data = JSON.parse(localStorage.getItem("wishlist")) || [];
+setWishlist(data);
 };
 
-updateWishlist();
+syncWishlist();
 
-window.addEventListener("wishlistUpdated", updateWishlist);
+window.addEventListener("wishlistUpdated", syncWishlist);
 
 return () => {
-window.removeEventListener("wishlistUpdated", updateWishlist);
+window.removeEventListener("wishlistUpdated", syncWishlist);
 };
-
-}, [] );
+}, []);
 
 useEffect(() => {
 const syncWishlist = () => {
