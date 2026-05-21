@@ -90,7 +90,6 @@ console.error("Error fetching all products:", error);
 }
 }, [query] );
 
-
 useEffect(() => {
 
 if (!allProducts.length) return;
@@ -108,10 +107,13 @@ product.img?.toLowerCase().includes(name.toLowerCase())
 
 }
 
+const min = filter?.minPrice ?? 0;
+const max = filter?.maxPrice ?? 100000;
+
 updatedProducts = updatedProducts.filter(
 (product) =>
-product.price >= filter.minPrice &&
-product.price <= filter.maxPrice
+Number(product.price) >= min &&
+Number(product.price) <= max
 );
 
 setFilteredProducts(updatedProducts);
