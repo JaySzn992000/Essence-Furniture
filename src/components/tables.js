@@ -154,7 +154,7 @@ return (
 <div>
 
 <div className="flex_productlist">
-{filteredProducts.map((productlist) => (
+{Array.isArray(filteredProducts) && filteredProducts.map((productlist) => (
 <div key={productlist.id} className="produclist_divContainer">
 
 <i
