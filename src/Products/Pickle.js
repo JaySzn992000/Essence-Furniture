@@ -45,6 +45,20 @@ setFilteredProducts(allProducts);
 }
 }, [query, allProducts]);
 
+
+useEffect(() => {
+const storedWishlistStatus =
+JSON.parse(localStorage.getItem("wishlistStatus")) || {};
+
+setWishlistStatus(storedWishlistStatus);
+
+const wishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
+
+setWishlistCount(wishlist.length);
+}, []);
+
+
 const handleFilterUpdate = (filteredData) => {
 setFilteredProducts(filteredData);
 };
@@ -82,7 +96,6 @@ setWishlistStatus(updatedWishlistStatus);
 localStorage.setItem("wishlistStatus", JSON.stringify(updatedWishlistStatus));
 setWishlistCount(wishlist.length);
 };
-
 
 const handleAddToCart = (product) => {
 if (!product) return;
