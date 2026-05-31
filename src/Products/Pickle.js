@@ -49,27 +49,31 @@ setFilteredProducts(allProducts);
 useEffect(() => {
 const syncWishlistStatus = () => {
 
-const updatedWishlistStatus =
-JSON.parse(localStorage.getItem("wishlistStatus")) || {};
-
-setWishlistStatus(updatedWishlistStatus);
-
-const wishlist =
+const storedWishlist =
 JSON.parse(localStorage.getItem("wishlist")) || [];
 
-setWishlistCount(wishlist.length);
+const updatedStatus = {};
 
+storedWishlist.forEach((item) => {
+updatedStatus[item.id] = true;
+});
+
+setWishlistStatus(updatedStatus);
+
+setWishlistCount(storedWishlist.length);
 };
-
-window.addEventListener("storage", syncWishlistStatus);
 
 syncWishlistStatus();
 
+window.addEventListener("storage", syncWishlistStatus);
+window.addEventListener("wishlistUpdated", syncWishlistStatus);
+
 return () => {
 window.removeEventListener("storage", syncWishlistStatus);
+window.removeEventListener("wishlistUpdated", syncWishlistStatus);
 };
 
-}, []);
+}, [] );
 
 const handleFilterUpdate = (filteredData) => {
 setFilteredProducts(filteredData);
