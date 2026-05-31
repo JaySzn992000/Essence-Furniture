@@ -47,17 +47,29 @@ setFilteredProducts(allProducts);
 
 
 useEffect(() => {
-const storedWishlistStatus =
+const syncWishlistStatus = () => {
+
+const updatedWishlistStatus =
 JSON.parse(localStorage.getItem("wishlistStatus")) || {};
 
-setWishlistStatus(storedWishlistStatus);
+setWishlistStatus(updatedWishlistStatus);
 
 const wishlist =
 JSON.parse(localStorage.getItem("wishlist")) || [];
 
 setWishlistCount(wishlist.length);
-}, []);
 
+};
+
+window.addEventListener("storage", syncWishlistStatus);
+
+syncWishlistStatus();
+
+return () => {
+window.removeEventListener("storage", syncWishlistStatus);
+};
+
+}, []);
 
 const handleFilterUpdate = (filteredData) => {
 setFilteredProducts(filteredData);
@@ -71,8 +83,8 @@ const [cartCount, setCartCount] = useState(0);
 const [cartItems, setCartItems] = useState([]);
 
 useEffect(() => {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  setCartCount(cart.length);
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+setCartCount(cart.length);
 }, []);
 
 const sendToWishlist = (product) => {
@@ -96,6 +108,7 @@ setWishlistStatus(updatedWishlistStatus);
 localStorage.setItem("wishlistStatus", JSON.stringify(updatedWishlistStatus));
 setWishlistCount(wishlist.length);
 };
+
 
 const handleAddToCart = (product) => {
 if (!product) return;
