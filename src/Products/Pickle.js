@@ -48,7 +48,6 @@ setFilteredProducts(allProducts);
 
 useEffect(() => {
 const syncWishlistStatus = () => {
-
 const storedWishlist =
 JSON.parse(localStorage.getItem("wishlist")) || [];
 
@@ -59,7 +58,6 @@ updatedStatus[item.id] = true;
 });
 
 setWishlistStatus(updatedStatus);
-
 setWishlistCount(storedWishlist.length);
 };
 
@@ -72,7 +70,6 @@ return () => {
 window.removeEventListener("storage", syncWishlistStatus);
 window.removeEventListener("wishlistUpdated", syncWishlistStatus);
 };
-
 }, [] );
 
 const handleFilterUpdate = (filteredData) => {
@@ -89,28 +86,24 @@ const [cartItems, setCartItems] = useState([]);
 useEffect(() => {
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
 setCartCount(cart.length);
-}, []);
+}, [] );
 
 const sendToWishlist = (product) => {
-let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-const productIndex = wishlist.findIndex((item) => item.id === product.id);
 
-if (productIndex === -1) {
-wishlist.push(product);
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+const exists = wishlist.some((item) => item.id === product.id);
+
+if (exists) {
+wishlist = wishlist.filter((item) => item.id !== product.id);
 } else {
-wishlist.splice(productIndex, 1);
+wishlist.push(product);
 }
 
 localStorage.setItem("wishlist", JSON.stringify(wishlist));
-window.dispatchEvent(new Event("storage"));
 
-const updatedWishlistStatus = {
-...wishlistStatus,
-[product.id]: !wishlistStatus[product.id],
-};
-setWishlistStatus(updatedWishlistStatus);
-localStorage.setItem("wishlistStatus", JSON.stringify(updatedWishlistStatus));
-setWishlistCount(wishlist.length);
+window.dispatchEvent(new Event("storage"));
+window.dispatchEvent(new Event("wishlistUpdated"));
 };
 
 
