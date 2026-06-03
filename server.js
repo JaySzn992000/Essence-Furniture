@@ -17,6 +17,7 @@ app.use(cors({
 
 origin: [
 'https://essence-furniture.vercel.app',
+'https://www.essence-furniture.store',
 ],
 
 methods: ['GET', 'POST', 'PUT', 'DELETE'],
