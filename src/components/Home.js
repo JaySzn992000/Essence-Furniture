@@ -78,7 +78,8 @@ return (
 <div>
 
 <Navbar />
-<Topnav></Topnav>
+
+{/* <Topnav></Topnav> */}
 
 <Slider />
 
