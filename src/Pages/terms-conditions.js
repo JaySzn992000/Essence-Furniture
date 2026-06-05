@@ -20,7 +20,7 @@ return (
 <p>Welcome to our website. essence-furniture.shop is an 
 online service operated and managed by Essence 
 Hunter International LLP. If you continue to browse 
-and use essence-furniture.shop you are agreeing to comply with 
+and use www.essence-furniture.store you are agreeing to comply with 
 and be bound by the following terms and conditions
 of the agreement listed below or as may be revised 
 from time to time ('User Agreement').

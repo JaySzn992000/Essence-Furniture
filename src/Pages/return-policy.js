@@ -21,7 +21,7 @@ to assist you for eligible returns. If you
 received the product and wish to exchange it 
 for another item, or you received a damaged 
 product, directions are provided below. Only 
-products purchased on www.essence-furniture.shop
+products purchased on www.essence-furniture.store
 can be returned.
 </p>
 

@@ -2,11 +2,20 @@ import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
 import aboutsofas from "../Slider/aboutsofas.jpg";
 import "./about.css";
+import { useNavigate } from "react-router";
 // import AboutPickle from "../Slider/AboutPickle.jpg";
 // import AboutCollectionOne from "../Slider/ourcollectionone.png";
 // import AboutCollectionTwo from "../Slider/ourcollectiontwo.png";
 
 const Aboutus = () => {
+
+
+const navigate = useNavigate()
+
+const shopnow = () => {
+navigate('collections')
+}
+
 
 return (
 
@@ -54,7 +63,7 @@ to bring you the latest trends and timeless styles, ensuring every piece
 reflects quality and elegance.
 </p>
 
-<button className="about_btn">Read More</button>
+<button onClick={shopnow} className="about_btn">Shop Now</button>
 </div>
 
 </main>
