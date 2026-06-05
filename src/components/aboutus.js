@@ -9,7 +9,6 @@ import { useNavigate } from "react-router";
 
 const Aboutus = () => {
 
-
 const navigate = useNavigate()
 
 const shopnow = () => {
@@ -63,7 +62,7 @@ to bring you the latest trends and timeless styles, ensuring every piece
 reflects quality and elegance.
 </p>
 
-<button onClick={shopnow} className="about_btn">Shop Now</button>
+<button onClick={shopnow} className="about_btn">Shop now</button>
 </div>
 
 </main>
