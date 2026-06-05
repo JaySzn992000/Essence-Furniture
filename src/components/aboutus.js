@@ -12,7 +12,7 @@ const Aboutus = () => {
 const navigate = useNavigate()
 
 const shopnow = () => {
-navigate('collections')
+navigate('/collections')
 }
 
 
