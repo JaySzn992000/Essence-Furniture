@@ -81,6 +81,14 @@ onClick={() => navigate("/")} />
 Sign up for our newsletter and get 10% off your first purchase
 </p>
 
+<p className="newsletter_text">
+Address : MVP Tower, A-7, Sector 10 Ground floor, A-7, Sector 10, Noida, Uttar Pradesh 201301
+</p>
+
+<p className="newsletter_text">
+Mob : +91 9811 966960
+</p>
+
 <div className="newsletter_box">
 <input
 type="text"
