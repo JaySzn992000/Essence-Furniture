@@ -441,17 +441,15 @@ loading="lazy" />
 </li>
 
 <section className={`storeBrand_dropdown ${openMenu.store ? "open" : ""}`}>
-<li><a>M.A.C</a></li>
-<li><a>Maybelline</a></li>
-<li><a>L'Oréal Paris</a></li>
-<li><a>Lakmé</a></li>
-<li><a>Aroma</a></li>
-<li><a>Sugar</a></li>
+<li><a>SOFAS</a></li>
+<li><a>BEDS</a></li>
+<li><a>BOOKSHELVES</a></li>
+<li><a>CABINETS</a></li>
 </section>
 
 </div>
 
-<div className="flex_icon_ storeBrand">
+{/* <div className="flex_icon_ storeBrand">
 
 <li onClick={() => toggleMenu("bath")}>
 <a href="javascript:void(0)">
@@ -459,16 +457,9 @@ BATH & BODY
 </a>
 </li>
 
-<section className={`storeBrand_dropdown ${openMenu.bath ? "open" : ""}`}>
-<li><a>Aloe Vera Gel</a></li>
-<li><a>Banana Powder</a></li>
-<li><a>Beetroot Powder</a></li>
-<li><a>Kasturi Haldi</a></li>
-</section>
+</div> */}
 
-</div>
-
-<div className="flex_icon_ storeBrand">
+{/* <div className="flex_icon_ storeBrand">
 
 <li onClick={() => toggleMenu("skincare")}>
 <a href="javascript:void(0)">
@@ -476,7 +467,7 @@ SKINCARE
 </a>
 </li>
 
-</div>
+</div> */}
 
 {loggedInUser && (
 <div className="flex_icon_">
