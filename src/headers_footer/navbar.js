@@ -441,10 +441,10 @@ loading="lazy" />
 </li>
 
 <section className={`storeBrand_dropdown ${openMenu.store ? "open" : ""}`}>
-<li><a>SOFAS</a></li>
-<li><a>BEDS</a></li>
-<li><a>BOOKSHELVES</a></li>
-<li><a>CABINETS</a></li>
+<li onClick={naviToTops}><a>SOFAS</a></li>
+<li onClick={naviToWomenJeans}><a>BEDS</a></li>
+<li onClick={naviToWomenTshirts}><a>BOOKSHELVES</a></li>
+<li onClick={naviToWomenAccessories}><a>CABINETS</a></li>
 </section>
 
 </div>
