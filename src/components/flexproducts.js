@@ -9,7 +9,7 @@ import Sofasfetch from "../Products/sofasfetch";
 import Bedsfetch from "../Products/bedsfetch";
 import Bookshelvesfetch from "../Products/bookshelvesfetch";
 import Cabinetsfetch from "../Products/cabinetsfetch";
-import Tablesfetch from "./Tablesfetch";
+import Tablesfetch from "./tablesfetch";
 
 const Flexproducts = ({ type }) => {
 
