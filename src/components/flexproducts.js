@@ -9,6 +9,7 @@ import Sofasfetch from "../Products/sofasfetch";
 import Bedsfetch from "../Products/bedsfetch";
 import Bookshelvesfetch from "../Products/bookshelvesfetch";
 import Cabinetsfetch from "../Products/cabinetsfetch";
+import Tables from "./tables";
 
 const Flexproducts = ({ type }) => {
 
@@ -167,6 +168,33 @@ onFilterUpdate={handleFilterUpdate}
 
 <div className="products_wrapper">
 <Cabinetsfetch 
+filter={filter} 
+allProducts={allProducts}/>
+</div>
+
+</div>
+
+</div>
+
+)}
+
+{type === "tables" && (
+
+<div>
+
+<img className="ListBanner" src={Banner1}></img>
+
+<div className="main_layout">
+
+<section className="filter_absolute">
+<Filters 
+allProducts={allProducts} 
+onFilterUpdate={handleFilterUpdate} 
+/>
+</section>
+
+<div className="products_wrapper">
+<Tables 
 filter={filter} 
 allProducts={allProducts}/>
 </div>
