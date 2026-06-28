@@ -1,71 +1,40 @@
-import { useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";  
+import Filters from "../components/Filters";
 import Navbar from "../headers_footer/navbar";
-import FAqQuestions from "./FAqQuestions";
-import Filters from "./Filters";
-import { connect } from "react-redux";
-import { addToCart } from "../action/action";
 import axios from "axios";
-import Banner1 from '../Slider/Banner1.jpg'
-import "./ProductListmodule.css";
+import "./Categoriesfruits.css";
 import Header from "../headers_footer/header";
+import { addToCart } from "../action/action";
+import Banner1 from '../Slider/Banner1.jpg'
+import FAqQuestions from "../components/FAqQuestions";
 
-const Tables = ({ addToCart}) => {
 
+const Tables = ({ showFilters = true, limit, addToCart, filter }) => {
+
+const [allProducts, setAllProducts] = useState([]); 
 const [filteredProducts, setFilteredProducts] = useState([]);
-const [allProducts, setAllProducts] = useState([]);
-const [wishlistCount, setWishlistCount] = useState(0);
-const [wishlistStatus, setWishlistStatus] = useState({});
-const [cartCount, setCartCount] = useState(0);
-const [arrayStore, setArrayStore] = useState([]);
-const [products, setProducts] = useState([]);
+const location = useLocation();
+const query = new URLSearchParams(location.search).get("search"); 
 
 useEffect(() => {
-
-axios
-.get("https://antara-gug4.onrender.com/fetchtables")
-.then((res) => setProducts(res.data))
-.catch((err) => console.error(err));
-}, [] );
-
-
-const handleAddToCart = (product) => {
-if (!product) return;
-const isProductInCart = JSON.parse(localStorage.getItem("cart"))?.some(
-(item) => item.id === product.id
-);
-if (isProductInCart) {
-alert("This product is already in your cart.");
-} else {
-addToCart(product);
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-cart.push(product);
-localStorage.setItem("cart", JSON.stringify(cart));
-localStorage.setItem(`cart-added-${product.id}`, JSON.stringify(true));
-alert("Product added to cart!");
-}
-};
-
-useEffect(() => {
-const storedWishlistStatus =
-JSON.parse(localStorage.getItem("wishlistStatus")) || {};
-setWishlistStatus(storedWishlistStatus);
-
 axios
 .get("https://antara-gug4.onrender.com/fetchtables")
 .then((response) => {
-setArrayStore(response.data);
-setFilteredProducts(response.data);
+console.log("Fetched Mangoes Pickles products:", response.data); 
+setAllProducts(response.data); 
+setFilteredProducts(
+limit ? response.data.slice(0, limit) : response.data
+);
 })
-
 .catch((error) => {
-console.error("Error fetching data:", error);
+console.error("Error fetching Mangoes Pickles products:", error);
 });
-}, [] );
 
+}, [] ); 
 
-const location = useLocation();
-const query = new URLSearchParams(location.search).get("search");
 useEffect(() => {
 if (query) {
 axios
@@ -73,25 +42,56 @@ axios
 params: { search: query },
 })
 .then((response) => {
-setAllProducts(response.data);
-setFilteredProducts(response.data);
+console.log("Fetched search results:", response.data); 
+setAllProducts(response.data); 
+setFilteredProducts(
+limit ? response.data.slice(0, limit) : response.data
+);
 })
 .catch((error) => {
-console.error("Error fetching products:", error);
+console.error("Error fetching products with search query:", error);
 });
 } else {
-axios
-.get("https://antara-gug4.onrender.com/fetchtables")
-.then((response) => {
-setAllProducts(response.data);
-setFilteredProducts(response.data);
-})
-.catch((error) => {
-console.error("Error fetching all products:", error);
-});
+setFilteredProducts(allProducts); 
 }
-}, [query] );
+}, [query, allProducts]);
 
+
+useEffect(() => {
+
+if (!allProducts.length) return;
+
+let updatedProducts = [...allProducts];
+
+if (filter?.selectedNames?.length > 0) {
+
+updatedProducts = updatedProducts.filter((product) =>
+filter.selectedNames.some(
+(name) =>
+product.img?.toLowerCase().includes(name.toLowerCase())
+)
+);
+
+}
+
+const min = filter?.minPrice ?? 0;
+const max = filter?.maxPrice ?? 100000;
+
+updatedProducts = updatedProducts.filter(
+(product) =>
+Number(product.price) >= min &&
+Number(product.price) <= max
+);
+
+setFilteredProducts(updatedProducts);
+
+}, [filter, allProducts]);
+
+const limitedProducts = filteredProducts.slice(0, limit);
+
+const [wishlistStatus, setWishlistStatus] = useState({});
+const [wishlistCount, setWishlistCount] = useState(0);
+const [cartCount, setCartCount] = useState(0);
 
 const sendToWishlist = (product) => {
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
@@ -104,12 +104,13 @@ wishlist.splice(productIndex, 1);
 }
 
 localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
 window.dispatchEvent(new Event("storage"));
 
 setWishlistStatus({
 ...wishlistStatus,
 [product.id]: !wishlistStatus[product.id],
-} );
+});
 
 setWishlistCount(wishlist.length);
 
@@ -124,15 +125,36 @@ JSON.stringify(updatedWishlistStatus)
 setWishlistStatus(updatedWishlistStatus);
 };
 
-const handleFilterUpdate = (filtered) => {
-setFilteredProducts(filtered);
-};
-
 const slugify = (text) => {
 return text
 .toLowerCase()
 .replace(/[^a-z0-9]+/g, '-')   
 .replace(/(^-|-$)/g, '');      
+};
+
+useEffect(() => {
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+setCartCount(cart.length);
+}, []);
+
+const handleAddToCart = (product) => {
+
+if (!product) return;
+
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+const isProductInCart = cart.some(
+(item) => String(item.id) === String(product.id)
+);
+if (isProductInCart) {
+alert("This product is already in your cart.");
+} else {
+addToCart(product);
+const updatedCart = [...cart, product];
+localStorage.setItem("cart", JSON.stringify(updatedCart));
+setCartCount(updatedCart.length);
+alert("Product added to cart !");
+}
+
 };
 
 
