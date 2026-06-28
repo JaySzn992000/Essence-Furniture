@@ -58,7 +58,7 @@ import Streax from "./Products/streax";
 import Collections from "./components/collections";
 import Women from "./components/women";
 import Men from "./components/men";
-import Tables from "./components/tables";
+import Tables from "./Products/tables";
 import Makeup from "./components/makeup";
 import Perfume from "./components/perfume";
 import Tshirts from "./Products/t-shirts";

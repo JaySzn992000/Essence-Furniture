@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";  
-import Filters from "./Filters";
+import Filters from "../components/Filters";
 import Navbar from "../headers_footer/navbar";
 import axios from "axios";
 import "../Products/Categoriesfruits.css";
 import Header from "../headers_footer/header";
 import { addToCart } from "../action/action";
 import Banner1 from '../Slider/Banner1.jpg'
-import FAqQuestions from "./FAqQuestions";
+import FAqQuestions from "../components/FAqQuestions";
 
 
 const Tablesfetch = ({ showFilters = true, limit, addToCart, filter }) => {
