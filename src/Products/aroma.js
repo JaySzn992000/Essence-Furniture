@@ -10,7 +10,6 @@ import Header from "../headers_footer/header";
 import { addToCart } from "../action/action";
 import FAqQuestions from "../components/FAqQuestions";
 
-
 const Aroma = ({ showFilters = true, limit, addToCart }) => {
 
 const [allProducts, setAllProducts] = useState([]); 

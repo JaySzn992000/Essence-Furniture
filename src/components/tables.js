@@ -140,11 +140,11 @@ return (
 
 <div>
 
-<Navbar wishlistCount={wishlistCount} cartCount={cartCount} />
+{/* <Navbar wishlistCount={wishlistCount} cartCount={cartCount} />
 
 <img className="ListBanner" src={Banner1}></img>
 
-<Filters allProducts={allProducts} onFilterUpdate={handleFilterUpdate} />
+<Filters allProducts={allProducts} onFilterUpdate={handleFilterUpdate} /> */}
 
 <div id="sticky_products_height">
 
@@ -154,7 +154,7 @@ return (
 <div>
 
 <div className="flex_productlist">
-{Array.isArray(filteredProducts) && filteredProducts.map((productlist) => (
+{filteredProducts.map((productlist) => (
 <div key={productlist.id} className="produclist_divContainer">
 
 <i
@@ -189,21 +189,12 @@ loading="lazy" />
 
 <img
 id="Review_ImgPrdcts"
-src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"/>
+src="https://cdn-icons-png.flaticon.com/128/2658/2658473.png" />
 
 <li style={{ marginTop: ".5em", marginLeft: "-.2em" }}></li>
 <li className="fa_Review">{productlist.review}</li>
-
 </div>
-
 </div>
-
-<button
-className="add_crt"
-onClick={() => handleAddToCart(productlist)}
->
-<span>ADD TO CART</span>
-</button>
 
 </div>
 
@@ -220,7 +211,7 @@ onClick={() => handleAddToCart(productlist)}
 
 <FAqQuestions></FAqQuestions>
 
-<Header></Header>
+{/* <Header></Header> */}
 
 </div>
 
