@@ -1,38 +1,50 @@
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";  
-import Filters from "../components/Filters";
+import { useEffect, useState } from "react";
+import { useLocation, Link } from "react-router-dom";
 import Navbar from "../headers_footer/navbar";
-import axios from "axios";
-import "./Categoriesfruits.css";
-import Banner1 from '../Slider/Banner1.jpg'
-import Header from "../headers_footer/header";
+import FAqQuestions from "./FAqQuestions";
+import Filters from "./Filters";
+import { connect } from "react-redux";
 import { addToCart } from "../action/action";
-import FAqQuestions from "../components/FAqQuestions";
+import axios from "axios";
+import "./ProductListmodule.css";
+import Header from "../headers_footer/header";
 
+const Cabinetsfetch = ({ addToCart, filter }) => {
 
-const Cabinetsfetch = ({ showFilters = true, limit, addToCart, filter }) => {
-
-const [allProducts, setAllProducts] = useState([]); 
 const [filteredProducts, setFilteredProducts] = useState([]);
-const location = useLocation();
-const query = new URLSearchParams(location.search).get("search"); 
+const [allProducts, setAllProducts] = useState([]);
+const [wishlistCount, setWishlistCount] = useState(0);
+const [wishlistStatus, setWishlistStatus] = useState({});
+const [cartCount, setCartCount] = useState(0);
+const [arrayStore, setArrayStore] = useState([]);
+const [products, setProducts] = useState([]);
 
 useEffect(() => {
 axios
 .get("https://antara-gug4.onrender.com/fetchcabinets")
-.then((response) => {
-console.log("Fetched Mangoes Pickles products:", response.data); 
-setAllProducts(response.data); 
-setFilteredProducts(
-limit ? response.data.slice(0, limit) : response.data
+.then((res) => setProducts(res.data))
+.catch((err) => console.error(err));
+}, []);
+
+const handleAddToCart = (product) => {
+if (!product) return;
+const isProductInCart = JSON.parse(localStorage.getItem("cart"))?.some(
+(item) => item.id === product.id
 );
-})
-.catch((error) => {
-console.error("Error fetching Mangoes Pickles products:", error);
-});
-}, [] ); 
+if (isProductInCart) {
+alert("This product is already in your cart.");
+} else {
+addToCart(product);
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+cart.push(product);
+localStorage.setItem("cart", JSON.stringify(cart));
+localStorage.setItem(`cart-added-${product.id}`, JSON.stringify(true));
+alert("Product added to cart!");
+}
+};
+
+const location = useLocation();
+const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
 if (query) {
@@ -41,141 +53,124 @@ axios
 params: { search: query },
 })
 .then((response) => {
-console.log("Fetched search results:", response.data); 
-setAllProducts(response.data); 
-setFilteredProducts(
-limit ? response.data.slice(0, limit) : response.data
-);
+setAllProducts(response.data);
+setFilteredProducts(response.data);
 })
 .catch((error) => {
-console.error("Error fetching products with search query:", error);
+console.error("Error fetching products:", error);
 });
 } else {
-setFilteredProducts(allProducts); 
+axios
+.get("https://antara-gug4.onrender.com/fetchcabinets")
+.then((response) => {
+setAllProducts(response.data);
+setFilteredProducts(response.data);
+})
+.catch((error) => {
+console.error("Error fetching all products:", error);
+});
 }
-}, [query, allProducts]);
+}, [query]);
 
 useEffect(() => {
-
 if (!allProducts.length) return;
-
 let updatedProducts = [...allProducts];
-
 if (filter?.selectedNames?.length > 0) {
-
 updatedProducts = updatedProducts.filter((product) =>
-filter.selectedNames.some(
-(name) =>
+filter.selectedNames.some((name) =>
 product.img?.toLowerCase().includes(name.toLowerCase())
 )
 );
-
 }
-
 const min = filter?.minPrice ?? 0;
 const max = filter?.maxPrice ?? 100000;
-
 updatedProducts = updatedProducts.filter(
-(product) =>
-Number(product.price) >= min &&
-Number(product.price) <= max
+(product) => Number(product.price) >= min && Number(product.price) <= max
 );
-
 setFilteredProducts(updatedProducts);
-
 }, [filter, allProducts]);
 
-const limitedProducts = filteredProducts.slice(0, limit);
-
-const [wishlistStatus, setWishlistStatus] = useState({});
-const [wishlistCount, setWishlistCount] = useState(0);
-const [cartCount, setCartCount] = useState(0);
+useEffect(() => {
+const syncWishlist = () => {
+const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+const updatedStatus = {};
+storedWishlist.forEach((item) => {
+updatedStatus[item.id] = true;
+});
+setWishlistStatus(updatedStatus);
+};
+syncWishlist();
+window.addEventListener("wishlistUpdated", syncWishlist);
+window.addEventListener("storage", syncWishlist);
+return () => {
+window.removeEventListener("wishlistUpdated", syncWishlist);
+window.removeEventListener("storage", syncWishlist);
+};
+}, []);
 
 const sendToWishlist = (product) => {
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 const productIndex = wishlist.findIndex((item) => item.id === product.id);
-
 if (productIndex === -1) {
 wishlist.push(product);
 } else {
 wishlist.splice(productIndex, 1);
 }
-
 localStorage.setItem("wishlist", JSON.stringify(wishlist));
-
 window.dispatchEvent(new Event("storage"));
-
 setWishlistStatus({
 ...wishlistStatus,
 [product.id]: !wishlistStatus[product.id],
 });
-
 setWishlistCount(wishlist.length);
-
 const updatedWishlistStatus = {
 ...wishlistStatus,
 [product.id]: !wishlistStatus[product.id],
 };
-localStorage.setItem(
-"wishlistStatus",
-JSON.stringify(updatedWishlistStatus)
-);
+localStorage.setItem("wishlistStatus", JSON.stringify(updatedWishlistStatus));
 setWishlistStatus(updatedWishlistStatus);
+};
+
+const handleFilterUpdate = (filtered) => {
+setFilteredProducts(filtered);
 };
 
 const slugify = (text) => {
 return text
 .toLowerCase()
-.replace(/[^a-z0-9]+/g, '-')   
-.replace(/(^-|-$)/g, '');      
+.replace(/[^a-z0-9]+/g, "-")
+.replace(/(^-|-$)/g, "");
 };
 
-useEffect(() => {
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
-setCartCount(cart.length);
-}, []);
-
-
-const handleAddToCart = (product) => {
-
-if (!product) return;
-
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
-const isProductInCart = cart.some(
-(item) => String(item.id) === String(product.id)
-);
-if (isProductInCart) {
-alert("This product is already in your cart.");
-} else {
-addToCart(product);
-const updatedCart = [...cart, product];
-localStorage.setItem("cart", JSON.stringify(updatedCart));
-setCartCount(updatedCart.length);
-alert("Product added to cart !");
-}
-
+const renderStars = (rating) => {
+const full = Math.floor(rating);
+const half = rating % 1 >= 0.5 ? 1 : 0;
+const empty = 5 - full - half;
+let stars = [];
+for (let i = 0; i < full; i++) stars.push(<i key={`full-${i}`} className="fas fa-star" />);
+if (half) stars.push(<i key="half" className="fas fa-star-half-alt" />);
+for (let i = 0; i < empty; i++) stars.push(<i key={`empty-${i}`} className="far fa-star" />);
+return stars;
 };
-
 
 return (
 
 <div>
-
-{/* <Navbar wishlistCount={wishlistCount} cartCount={cartCount} />
-
-<img className="ListBanner" src={Banner1}></img>
-
-<Filters allProducts={allProducts} onFilterUpdate={handleFilterUpdate} /> */}
-
 <div id="sticky_products_height">
-
 <div className="sticky-wrapper">
-
 <section>
 <div>
-
 <div className="flex_productlist">
-{filteredProducts.map((productlist) => (
+{filteredProducts.map((productlist) => {
+const originalPrice = productlist.originalPrice || productlist.price * 1.5;
+const discountPercent =
+productlist.discountPercent ||
+Math.round(((originalPrice - productlist.price) / originalPrice) * 100);
+const rating = productlist.rating || 4.5;
+const reviewCount = productlist.reviewCount || productlist.review || 0;
+
+return (
+
 <div key={productlist.id} className="produclist_divContainer">
 
 <i
@@ -183,63 +178,50 @@ onClick={() => sendToWishlist(productlist)}
 className={`fa fa-heart fa-heart_products ${
 wishlistStatus[productlist.id] ? "wishlist-active" : ""
 }`}
->
-{" "}
-</i>
+></i>
 
 <Link to={`/products/${slugify(productlist.name)}/${productlist.id}`}>
-<img
-src={productlist.file_path}
-alt={productlist.name}
-loading="lazy"
-/>
+<img src={productlist.file_path} alt={productlist.name} loading="lazy" />
 </Link>
 
 <div className="padding_contain">
 <div className="flex_inr">
-
 <Link to={`/products/${slugify(productlist.name)}/${productlist.id}`}>
 <li>{productlist.name}</li>
 </Link>
 
-<div className="price_div">
-<li className="fa fa-inr"></li>
-<li className="fa_Price">{productlist.price}</li>
+<div className="price_review_wrapper">
+<div className="price_row_new">
+<span className="discount_price">
+₹ {Number(productlist.price).toLocaleString("en-IN")}
+</span>
+<span className="original_price">
+₹ {Number(originalPrice).toLocaleString("en-IN")}
+</span>
+{discountPercent > 0 && (
+<span className="save_badge">Save {discountPercent}%</span>
+)}
 </div>
+<div className="rating_row_new">
+<span className="stars_container">{renderStars(rating)}</span>
 
-<div className="review_CtrAllPrdcts">
-
-<img
-id="Review_ImgPrdcts"
-src="https://cdn-icons-png.flaticon.com/128/2658/2658473.png" />
-
-<li style={{ marginTop: ".5em", marginLeft: "-.2em" }}></li>
-<li className="fa_Review">{productlist.review}</li>
+<span className="review_count">| {reviewCount} reviews</span>
 </div>
 </div>
-
 </div>
-
 </div>
-))}
-
 </div>
-
+);
+})}
+</div>
 </div>
 </section>
-
 </div>
-
 </div>
-
-<FAqQuestions></FAqQuestions>
-
-{/* <Header></Header> */}
-
+<FAqQuestions />
 </div>
 
 );
-
 };
 
 export default connect(null, { addToCart })(Cabinetsfetch);
