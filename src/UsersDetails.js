@@ -14,7 +14,7 @@ useEffect(() => {
 const DbFetch = async () => {
 try {
 
-const response = await fetch("https://antara-gug4.onrender.com/usersDetails");
+const response = await fetch("http://localhost:3001/usersDetails");
 
 const data = await response.json();
 

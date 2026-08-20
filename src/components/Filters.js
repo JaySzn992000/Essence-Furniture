@@ -1,172 +1,207 @@
-import { useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
-import NavigationClose from "../Logo/CloseTag.png";
+import React, { useState, useEffect, useRef } from "react";
 import "./Filters.css";
 
-const Filters = ({ allProducts, onFilterUpdate }) => {
+const Filters = ({ onFilterUpdate }) => {
 
 const [selectedNames, setSelectedNames] = useState([]);
-
 const [minPrice, setMinPrice] = useState(0);
-const [maxPrice, setMaxPrice] = useState(100000);
-const [isPriceChanged, setIsPriceChanged] = useState(false);
+const [maxPrice, setMaxPrice] = useState(10000);
+const [isOpen, setIsOpen] = useState(false);
+const panelRef = useRef(null);
 
-const [filters_div, setfilters_div] = useState(false);
-
-const navigate = useNavigate();
-const location = useLocation();
-
-const query = new URLSearchParams(location.search).get("search");
+const collections = [
+{ name: "All", count: 12 },
+{ name: "Chairs", count: 4 },
+{ name: "Tables", count: 4 },
+{ name: "Sofas", count: 1 },
+{ name: "Lighting", count: 2 },
+{ name: "Storage", count: 2 },
+];
 
 useEffect(() => {
-
-onFilterUpdate({
-selectedNames,
-minPrice,
-maxPrice,
-});
-
-}, [selectedNames, minPrice, maxPrice]);
-
-const handlePriceChange = () => setIsPriceChanged(true);
+if (onFilterUpdate) {
+onFilterUpdate({ selectedNames, minPrice, maxPrice });
+}
+}, [selectedNames, minPrice, maxPrice, onFilterUpdate]);
 
 const handleNameChange = (name) => {
-setSelectedNames((prevNames) => {
-let newNames;
-if (prevNames.includes(name)) {
-newNames = prevNames.filter((n) => n !== name);
-} else {
-newNames = [...prevNames, name];
+if (name === "All") {
+setSelectedNames(selectedNames.includes("All") ? [] : ["All"]);
+return;
 }
-
-const newQuery =
-newNames.length > 0
-? `?search=${encodeURIComponent(newNames.join(","))}`
-: "";
-navigate(`${newQuery}`);
-
+setSelectedNames((prev) => {
+let newNames = prev.filter((n) => n !== "All");
+if (newNames.includes(name)) {
+newNames = newNames.filter((n) => n !== name);
+} else {
+newNames = [...newNames, name];
+}
 return newNames;
 });
 };
 
-const ClickFilter = () => setfilters_div(true);
-const FilterClose = () => setfilters_div(false);
+const handleMinPriceChange = (e) => {
+const val = Number(e.target.value);
+if (val <= maxPrice) setMinPrice(val);
+};
+
+const handleMaxPriceChange = (e) => {
+const val = Number(e.target.value);
+if (val >= minPrice) setMaxPrice(val);
+};
+
+const handleReset = () => {
+setSelectedNames([]);
+setMinPrice(0);
+setMaxPrice(10000);
+};
+
+const togglePanel = () => setIsOpen(!isOpen);
+const closePanel = () => setIsOpen(false);
+
+useEffect(() => {
+const handleClickOutside = (e) => {
+if (panelRef.current && !panelRef.current.contains(e.target)) {
+if (window.innerWidth <= 768 && isOpen) closePanel();
+}
+};
+document.addEventListener("mousedown", handleClickOutside);
+return () => document.removeEventListener("mousedown", handleClickOutside);
+}, [isOpen]);
+
+useEffect(() => {
+const handleEscape = (e) => {
+if (e.key === "Escape" && isOpen) closePanel();
+};
+document.addEventListener("keydown", handleEscape);
+return () => document.removeEventListener("keydown", handleEscape);
+}, [isOpen]);
+
+const formatPrice = (val) => `₹${Number(val).toLocaleString("en-IN")}`;
+const minPercent = (minPrice / 10000) * 100;
+const maxPercent = (maxPrice / 10000) * 100;
 
 return (
 
-<div>
+<>
+<button className="filter-toggle-btn" onClick={togglePanel}>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+<line x1="4" y1="21" x2="4" y2="14" />
+<line x1="4" y1="10" x2="4" y2="3" />
+<line x1="12" y1="21" x2="12" y2="12" />
+<line x1="12" y1="8" x2="12" y2="3" />
+<line x1="20" y1="21" x2="20" y2="16" />
+<line x1="20" y1="12" x2="20" y2="3" />
+<line x1="1" y1="14" x2="7" y2="14" />
+<line x1="9" y1="8" x2="15" y2="8" />
+<line x1="17" y1="16" x2="23" y2="16" />
+</svg>
+{selectedNames.length > 0 && !selectedNames.includes("All") && (
+<span className="filter-badge">{selectedNames.length}</span>
+)}
+</button>
 
-<div className="content_sticky">
+{isOpen && <div className="filter-overlay active" onClick={closePanel} />}
 
-<div id="div_filter">
+<aside ref={panelRef} className={`filter-panel ${isOpen ? "filter-panel--open" : ""}`}>
 
-<img
-loading="lazy"
-onClick={ClickFilter}
-className="filter_"
-src="https://cdn-icons-png.flaticon.com/128/7094/7094575.png"
-alt=""></img>
-
-</div>
-
-<div className={`filters ${filters_div ? "filters_AfContainer" : ""}`}>
-
-<img
-loading="lazy"
-alt=""
-src={NavigationClose}
-id="Product_CloseTag"
-onClick={FilterClose}></img>
-
-<div>
-
-<div className="priceContainer">
-
-<h4 id="priceRange">SORT BY</h4>
-
-<li className="maxMin">
-
-{" "}
-
-₹ {minPrice} - ₹{maxPrice}
-
-</li>
-
-<input
-type="range"
-min="0"
-max="100000"
-step="10"
-value={minPrice}
-onChange={(e) => {
-setMinPrice(Number(e.target.value));
-handlePriceChange();
-}}
-style={{ width: "100%" }} />
-
-<input
-type="range"
-min="0"
-max="100000"
-step="10"
-value={maxPrice}
-onChange={(e) => {
-setMaxPrice(Number(e.target.value));
-handlePriceChange();
-}}
-style={{ width: "100%" }} />
+<div className="filter-header">
+<div className="filter-header-left">
+<h2>Refine</h2>
+<span className="filter-subtitle">Find your perfect piece</span>
 
 </div>
+<button className="filter-close-btn" onClick={closePanel}>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+<line x1="18" y1="6" x2="6" y2="18" />
+<line x1="6" y1="6" x2="18" y2="18" />
+</svg>
+</button>
+</div>
 
-<h4 id="priceRange">COLLECTIONS</h4>
-
-<div>
-{[
-"Sofas",
-"Beds",
-"Bookshelves",
-"Cabinets",
-"Tables",
-].map((name) => (
-<label className="lable-Fontsize" key={name}>
-<input
-id="chck_box"
-type="checkbox"
-value={name}
-checked={selectedNames.includes(name)}
-onChange={() => handleNameChange(name)} />
-
+<div className="filter-section">
+<div className="filter-section-title">
+Price Range
+</div>
+<div className="price-display">
+<span className="price-value">{formatPrice(minPrice)}</span>
+<span className="price-sep">—</span>
+<span className="price-value">{formatPrice(maxPrice)}</span>
+</div>
+<div className="range-track-wrapper">
+<div className="range-slider-group">
 <div
-style={{
-display: "flex",
-alignItems: "center",
-justifyContent: "space-between",
-width: "85%",
-cursor: "pointer",
-}} >
+className="range-progress"
+style={{ left: `${minPercent}%`, right: `${100 - maxPercent}%` }}
+/>
+<input
+type="range"
+className="range-input range-input--min"
+min="0"
+max="10000"
+step="100"
+value={minPrice}
+onChange={handleMinPriceChange}
+/>
+<input
+type="range"
+className="range-input range-input--max"
+min="0"
+max="10000"
+step="100"
+value={maxPrice}
+onChange={handleMaxPriceChange}
+/>
+</div>
+<div className="range-labels">
+<span>₹0</span>
+<span>₹5,000</span>
+<span>₹10,000</span>
+</div>
+</div>
+</div>
 
-{name}
+<div className="filter-section">
+<div className="filter-section-title">
+Collections
+<span className="title-line" />
 </div>
-</label>
-))}
+<div className="collection-grid">
+{collections.map((col) => {
+const isAll = col.name === "All";
+const checked = isAll
+? selectedNames.includes("All")
+: selectedNames.includes(col.name) && !selectedNames.includes("All");
+
+return (
+<button
+key={col.name}
+className={`collection-tile ${checked ? "collection-tile--active" : ""}`}
+onClick={() => handleNameChange(col.name)}
+>
+<span className="collection-tile-name">{col.name}</span>
+<span className="collection-tile-count">{col.count}</span>
+</button>
+);
+})}
 </div>
 </div>
 
-<div>
-<div></div>
+<div className="filter-actions">
+<button className="filter-btn filter-btn--reset" onClick={handleReset}>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+<path d="M3 12a9 9 0 1 0 9-9m0 0v6m0-6h-6" />
+</svg>
+Reset
+</button>
+<button className="filter-btn filter-btn--apply" onClick={closePanel}>
+Apply <span>→</span>
+</button>
 </div>
-
-<div>
-<div></div>
-</div>
-</div>
-
-</div>
-
-</div>
+</aside>
+</>
 
 );
-
 };
 
 export default Filters;
