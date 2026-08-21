@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import Navbar from "../headers_footer/navbar";
-import FAqQuestions from "./FAqQuestions";
-import Filters from "./Filters";
+import FAqQuestions from "../components/FAqQuestions";
+import Filters from "../components/Filters";
 import { connect } from "react-redux";
 import { addToCart } from "../action/action";
 import axios from "axios";
-import "./ProductListmodule.css";
+import "../components/ProductListmodule.css";
 import Header from "../headers_footer/header";
 
 const Sofas = ({ addToCart, filter }) => {
