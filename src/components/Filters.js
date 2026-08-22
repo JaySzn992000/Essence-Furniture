@@ -21,10 +21,15 @@ onFilterUpdate({ selectedNames, minPrice, maxPrice });
 }, [selectedNames, minPrice, maxPrice, onFilterUpdate]);
 
 const handleNameChange = (name) => {
+
 if (name === "All") {
-setSelectedNames(selectedNames.includes("All") ? [] : ["All"]);
+
+const allNames = collections.map(c => c.name).filter(n => n !== "All");
+const allSelected = allNames.every(n => selectedNames.includes(n));
+setSelectedNames(allSelected ? [] : allNames);
 return;
 }
+
 setSelectedNames((prev) => {
 let newNames = prev.filter((n) => n !== "All");
 if (newNames.includes(name)) {
@@ -34,6 +39,7 @@ newNames = [...newNames, name];
 }
 return newNames;
 });
+
 };
 
 const handleMinPriceChange = (e) => {
