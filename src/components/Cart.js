@@ -138,7 +138,7 @@ aria-label={`Remove ${item.name}`}
 loading="lazy"
 src={CartDeleteItem}
 alt=""
-style={{ width: "23px", marginTop: "0em", cursor : 'pointer' }}
+style={{ width: "23px", marginTop: "0em", cursor : 'pointer'}}
 ></img>
 
 </div>
