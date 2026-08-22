@@ -5,17 +5,13 @@ const Filters = ({ onFilterUpdate }) => {
 
 const [selectedNames, setSelectedNames] = useState([]);
 const [minPrice, setMinPrice] = useState(0);
-const [maxPrice, setMaxPrice] = useState(10000);
+const [maxPrice, setMaxPrice] = useState(200000);    
 const [isOpen, setIsOpen] = useState(false);
 const panelRef = useRef(null);
 
 const collections = [
-{ name: "All", count: 12 },
-{ name: "Chairs", count: 4 },
-{ name: "Tables", count: 4 },
-{ name: "Sofas", count: 1 },
-{ name: "Lighting", count: 2 },
-{ name: "Storage", count: 2 },
+{ name: "All" }, { name: "Chairs" }, { name: "Tables" },
+{ name: "Sofas" }, { name: "Lighting" }, { name: "Storage" },
 ];
 
 useEffect(() => {
@@ -53,7 +49,7 @@ if (val >= minPrice) setMaxPrice(val);
 const handleReset = () => {
 setSelectedNames([]);
 setMinPrice(0);
-setMaxPrice(10000);
+setMaxPrice(200000);     
 };
 
 const togglePanel = () => setIsOpen(!isOpen);
@@ -78,8 +74,8 @@ return () => document.removeEventListener("keydown", handleEscape);
 }, [isOpen]);
 
 const formatPrice = (val) => `₹${Number(val).toLocaleString("en-IN")}`;
-const minPercent = (minPrice / 10000) * 100;
-const maxPercent = (maxPrice / 10000) * 100;
+const minPercent = (minPrice / 200000) * 100;   
+const maxPercent = (maxPrice / 200000) * 100;
 
 return (
 
@@ -104,12 +100,10 @@ return (
 {isOpen && <div className="filter-overlay active" onClick={closePanel} />}
 
 <aside ref={panelRef} className={`filter-panel ${isOpen ? "filter-panel--open" : ""}`}>
-
 <div className="filter-header">
 <div className="filter-header-left">
 <h2>Refine</h2>
 <span className="filter-subtitle">Find your perfect piece</span>
-
 </div>
 <button className="filter-close-btn" onClick={closePanel}>
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -120,9 +114,7 @@ return (
 </div>
 
 <div className="filter-section">
-<div className="filter-section-title">
-Price Range
-</div>
+<div className="filter-section-title">Price Range</div>
 <div className="price-display">
 <span className="price-value">{formatPrice(minPrice)}</span>
 <span className="price-sep">—</span>
@@ -138,8 +130,8 @@ style={{ left: `${minPercent}%`, right: `${100 - maxPercent}%` }}
 type="range"
 className="range-input range-input--min"
 min="0"
-max="10000"
-step="100"
+max="200000"         
+step="1000"           
 value={minPrice}
 onChange={handleMinPriceChange}
 />
@@ -147,16 +139,16 @@ onChange={handleMinPriceChange}
 type="range"
 className="range-input range-input--max"
 min="0"
-max="10000"
-step="100"
+max="200000"          
+step="1000"           
 value={maxPrice}
 onChange={handleMaxPriceChange}
 />
 </div>
 <div className="range-labels">
 <span>₹0</span>
-<span>₹5,000</span>
-<span>₹10,000</span>
+<span>₹1,00,000</span>   
+<span>₹2,00,000</span>   
 </div>
 </div>
 </div>
@@ -172,7 +164,6 @@ const isAll = col.name === "All";
 const checked = isAll
 ? selectedNames.includes("All")
 : selectedNames.includes(col.name) && !selectedNames.includes("All");
-
 return (
 <button
 key={col.name}
