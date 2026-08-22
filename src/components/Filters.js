@@ -10,8 +10,8 @@ const [isOpen, setIsOpen] = useState(false);
 const panelRef = useRef(null);
 
 const collections = [
-{ name: "All" }, { name: "Chairs" }, { name: "Tables" },
-{ name: "Sofas" }, { name: "Lighting" }, { name: "Storage" },
+{ name: "All" }, { name: "Cabinets" }, { name: "Tables" },
+{ name: "Sofas" }, { name: "Beds" }, { name: "Bookshelves" },
 ];
 
 useEffect(() => {
